@@ -40,5 +40,9 @@ dependencies {
     //circular
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
+    //pick image
+    implementation 'com.github.dhaval2404:imagepicker:2.1'
+
+
     
 }

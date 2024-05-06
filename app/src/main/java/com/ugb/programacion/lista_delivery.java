@@ -22,21 +22,23 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-
-public class lista_cindy extends AppCompatActivity {
+//Cindy
+public class lista_delivery extends AppCompatActivity {
 
     //VARIABLES
+    BottomNavigationView bottomNavigationView;
     Bundle parametros = new Bundle();
     FloatingActionButton btnIragregar;
     ListView lts;
     Cursor cProductos;
-    DB_yaritza dbProductos;
+    DB dbProductos;
     productos misProductos;
     final ArrayList<productos> alProductos=new ArrayList<productos>();
     final ArrayList<productos> alProductosCopy=new ArrayList<productos>();
@@ -49,23 +51,42 @@ public class lista_cindy extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lista_cindy);
+        setContentView(R.layout.lista_delivery);
 
         //cambiar color barra estado
-        cambiarColorBarraEstado(getResources().getColor(R.color.darkblue));
+        cambiarColorBarraEstado(getResources().getColor(R.color.blueblue));
 
-        dbProductos = new DB_yaritza(lista_cindy.this,"",null,1);
+        dbProductos = new DB(lista_delivery.this,"",null,1);
+
+        //BottomNavegation
+        bottomNavigationView = findViewById(R.id.bottomNavegation);
+        bottomNavigationView.setSelectedItemId(R.id.navPrincipal);
+
+        bottomNavigationView.setOnItemReselectedListener(item -> {
+            switch (item.getItemId()){
+                case R.id.navPrincipal: //Lista tulip
+                    return;
+                case R.id.navAgregar: //Agregar tulip
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    finish();
+                    return;
+                case R.id.navMensajeria: //Mensajeria
+                    startActivity(new Intent(getApplicationContext(), Mensajeria.class));
+                    finish();
+                    return;
+            }
+        }); //fin navegation
 
 
         //Boton para cambiar de activitys, ir a agregar
-        btnIragregar = findViewById(R.id.btnAbrirNuevosProductos);
+       /* btnIragregar = findViewById(R.id.btnAbrirNuevosProductos);
         btnIragregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 parametros.putString("accion", "nuevo");
                 irAgregar(parametros);
             }
-        });
+        });*/
         try{
             di = new detectarInternet(getApplicationContext());
             if(di.hayConexionInternet()){ //online
@@ -110,7 +131,7 @@ public class lista_cindy extends AppCompatActivity {
 
                     JSONObject respuestaJSONObject = new JSONObject(respuesta);
                     if (respuestaJSONObject.getBoolean("ok")) {
-                        DB_yaritza db = new DB_yaritza(getApplicationContext(), "", null, 1);
+                        DB db = new DB(getApplicationContext(), "", null, 1);
                         String[] datos = new String[]{
                                 respuestaJSONObject.getString("id"),
                                 respuestaJSONObject.getString("rev"),
@@ -213,12 +234,12 @@ public class lista_cindy extends AppCompatActivity {
             switch (item.getItemId()){
                 case R.id.mnxAgregar:
                     parametros.putString("accion", "nuevo");
-                    irAgregar(parametros);
+                    //irAgregar(parametros);
                     break;
                 case R.id.mnxModificar:
                     parametros.putString("accion","modificar");
                     parametros.putString("productos", datosJSON.getJSONObject(posicion).toString());
-                    irAgregar(parametros);
+                    //irAgregar(parametros);
                     break;
                 case R.id.mnxEliminar:
                     eliminarProductos();
@@ -236,7 +257,7 @@ public class lista_cindy extends AppCompatActivity {
     //Eliminar productos
     private void eliminarProductos(){
         try {
-            AlertDialog.Builder confirmacion = new AlertDialog.Builder(lista_cindy.this);
+            AlertDialog.Builder confirmacion = new AlertDialog.Builder(lista_delivery.this);
             confirmacion.setTitle("Esta seguro de Eliminar a: ");
             confirmacion.setMessage(datosJSON.getJSONObject(posicion).getJSONObject("value").getString("nombre"));
             confirmacion.setPositiveButton("SI", new DialogInterface.OnClickListener() {
@@ -270,7 +291,7 @@ public class lista_cindy extends AppCompatActivity {
     //obtenet productos skincare
     private void obtenerProductos(){
         try{
-            dbProductos = new DB_yaritza(lista_cindy.this, "", null, 1);
+            dbProductos = new DB(lista_delivery.this, "", null, 1);
             cProductos = dbProductos.consultar_productos();
             if ( cProductos.moveToFirst() ){
                 datosJSON = new JSONArray();
@@ -358,13 +379,7 @@ public class lista_cindy extends AppCompatActivity {
         });
     }
 
-    //Metodo para ir al activity de agregar
-    private void irAgregar(Bundle parametros){
-        Intent abrirVentana = new Intent(getApplicationContext(), MainActivity.class);
-        abrirVentana.putExtras(parametros); //abrir actividad y modificar
-        startActivity(abrirVentana);
 
-    }
 
     //Metodo para cambiar el color de la barra de estado
     private void cambiarColorBarraEstado(int color) {

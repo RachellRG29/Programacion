@@ -7,12 +7,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-public class DB_yaritza extends SQLiteOpenHelper {
+//Cindy corregir
+public class DB extends SQLiteOpenHelper {
     private  static  final String dbname = "db_productos";
     private  static final int v=1;
     private static  final String SQldb = "CREATE TABLE productos(id text, rev text, idProducto text, codigo text, nombre text, marca text, costo text, stock text, ganancia text, descripcion text, imgproducto text, actualizado text)";
 
-    public DB_yaritza(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+    public DB(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, dbname, factory, v);
     }
 

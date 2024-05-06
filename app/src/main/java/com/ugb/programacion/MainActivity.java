@@ -1,17 +1,15 @@
 package com.ugb.programacion;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import androidx.annotation.Nullable;
-import androidx.core.content.FileProvider;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -20,13 +18,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import org.json.JSONObject;
+import com.github.dhaval2404.imagepicker.ImagePicker;
 
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import org.json.JSONObject;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -35,15 +32,19 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MainActivity extends AppCompatActivity {
 
     //VARIABLES
+
+    //Navegation bar
+    BottomNavigationView bottomNavigationView;
     CircleImageView imageCirProducto;
-    private Button btnChangeImage;
+    FloatingActionButton btnChangeImage;
+    String accion="nuevo", id="", imgproductourl="", rev="", idProducto="";
     Button btnGuardar;
     TextView tempVal;
-    String accion="nuevo", id="", imgproductourl="", rev="", idProducto="";
-    FloatingActionButton btnIrvista;
-    Intent tomarFotoIntent;
     utilidades utls;
     detectarInternet di;
+
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
+    private static final int REQUEST_IMAGE_PICKER = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,37 +52,56 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //cambiar color barra estado
-        cambiarColorBarraEstado(getResources().getColor(R.color.darkblue));
+        cambiarColorBarraEstado(getResources().getColor(R.color.blueblue));
         di = new detectarInternet(getApplicationContext());
         utls = new utilidades();
 
         //valores para los productos
-        EditText txtcodigo= (EditText)findViewById(R.id.txtCodigo);
+       /* EditText txtcodigo= (EditText)findViewById(R.id.txtCodigo);
         EditText txtnombre= (EditText)findViewById(R.id.txtNombre);
         EditText txtmarca= (EditText)findViewById(R.id.txtMarca);
         EditText txtcosto= (EditText)findViewById(R.id.txtCosto);
         EditText txtstock= (EditText)findViewById(R.id.txtStock);
         EditText txtganancia= (EditText)findViewById(R.id.txtGanancia);
-        EditText txtdescripcion= (EditText)findViewById(R.id.txtDescripcion);
+        EditText txtdescripcion= (EditText)findViewById(R.id.txtDescripcion); */
 
         imageCirProducto = findViewById(R.id.imgProductoVista); //
         btnChangeImage = findViewById(R.id.btnCambiarImagen);
         btnChangeImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tomarFotoProducto();
+
+               ImagePicker.with(MainActivity.this)
+                        .crop()	    			//Crop image(Optional), Check Customization for more option
+                        .compress(1024)			//Final image size will be less than 1 MB(Optional)
+                        .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
+                        .start();
+
             }
         });
 
-        //Boton para cambiar de activitys, ir a vista
-        btnIrvista = findViewById(R.id.btnRegresarListaProductos);
-        btnIrvista.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                irVista();
-            }
-        });
+        //BottomNavegation
+        bottomNavigationView = findViewById(R.id.bottomNavegation);
+        bottomNavigationView.setSelectedItemId(R.id.navAgregar);
 
+        bottomNavigationView.setOnItemReselectedListener(item -> {
+            switch (item.getItemId()){
+                case R.id.navPrincipal: //Lista tulip
+                    startActivity(new Intent(getApplicationContext(), lista_delivery.class));
+                    finish();
+                    return;
+                case R.id.navAgregar: //Agregar tulip
+                    return;
+                case R.id.navMensajeria: //Mensajeria
+                    startActivity(new Intent(getApplicationContext(), Mensajeria.class));
+                    finish();
+                    return;
+            }
+            return;
+        }); //fin navegation
+
+
+/*
         //boton guardar producto
         btnGuardar = findViewById(R.id.btnGuardarProducto);
         btnGuardar.setOnClickListener(new View.OnClickListener() {
@@ -163,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
 
                         }
 
-                        DB_yaritza db = new DB_yaritza(getApplicationContext(), "", null, 1);
+                        DB db = new DB(getApplicationContext(), "", null, 1);
                         String[] datos = new String[]{id, rev, idProducto, codigo, nombre, marca, costo, stock, ganancia, descripcion, imgproductourl, actualizado};
                         respuesta = db.administrar_productos(accion, datos);
                         if (respuesta.equals("ok")) {
@@ -181,69 +201,38 @@ public class MainActivity extends AppCompatActivity {
         });
         mostrarDatosProductos(); //mostrar los datos del producto
 
+        */
+
 
     } //fin ONCREATE :3
 
     //AGREGAR PRIVATE VOIDS
 
-    private void irVista(){ //regresar vista o lista productos skincare
-        Intent abrirVentana = new Intent(getApplicationContext(), lista_cindy.class);
-        startActivity(abrirVentana);
-    }
-
-    private double calcularPrecio(double costo, double ganancia) {
-        return costo * (1 + (ganancia / 100));
-    }
-
+    //Camara y galeria totalmente funcional
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        try{
-            if( requestCode==1 && resultCode==RESULT_OK ){
-                Bitmap imagenBitmap = BitmapFactory.decodeFile(imgproductourl);
-                imageCirProducto.setImageBitmap(imagenBitmap);
-            }else{
-                mostrarMsg("Se cancelo la toma de la foto");
+        try {
+            if (resultCode == RESULT_OK && data != null) {
+                Uri uri = data.getData();
+                if (uri != null) {
+                    imageCirProducto.setImageURI(uri);
+                    imgproductourl = uri.getPath(); // Almacenar la URL de la imagen :3
+                } else {
+                    mostrarMsg("No se pudo obtener la imagen seleccionada.");
+                }
+            } else {
+                mostrarMsg("Se canceló la selección de la imagen.");
             }
-        }catch (Exception e){
-            mostrarMsg("Error al mostrar la camara: "+ e.getMessage());
+        } catch (Exception e) {
+            mostrarMsg("Error al mostrar la imagen: " + e.getMessage());
         }
     }
 
-    //TOMAR FOTO CON LA CAMARA
-    private void tomarFotoProducto(){
-        tomarFotoIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-        File fotoProducto = null;
-        try{
-            fotoProducto = crearImagenProducto();
-            if( fotoProducto!=null ){
-                Uri uriFotoAmigo = FileProvider.getUriForFile(MainActivity.this, "com.ugb.programacion.fileprovider", fotoProducto);
-                tomarFotoIntent.putExtra(MediaStore.EXTRA_OUTPUT, uriFotoAmigo);
-                startActivityForResult(tomarFotoIntent, 1);
-            }else{
-                mostrarMsg("NO pude tomar la foto");
-            }
-        }catch (Exception e){
-            mostrarMsg("Error al tomar la foto: "+ e.getMessage());
-        }
 
-    }
 
-    //CREAR IMAGEN DEL PRODUCTO CON LA CAMARA
-    private File crearImagenProducto() throws Exception{
-        String fechaHoraMs = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String fileName = "imagen_"+ fechaHoraMs +"_";
-        File dirAlmacenamiento = getExternalFilesDir(Environment.DIRECTORY_DCIM);
-        if( !dirAlmacenamiento.exists() ){
-            dirAlmacenamiento.mkdirs();
-        }
-        File image = File.createTempFile(fileName, ".jpg", dirAlmacenamiento);
-        imgproductourl = image.getAbsolutePath();
-        return image;
-    }
-
-    //MOSTRAR DATOS PRODUCTOS SKINCARE
+    //MOSTRAR DATOS PRODUCTOS DELIVERY CONSOLAS
     private void mostrarDatosProductos(){
         try {
             Bundle parametros = getIntent().getExtras();
@@ -254,25 +243,25 @@ public class MainActivity extends AppCompatActivity {
                 rev = jsonObject.getString("_rev");
                 idProducto = jsonObject.getString("idProducto");
 
-                tempVal = findViewById(R.id.txtCodigo);
+               // tempVal = findViewById(R.id.txtCodigo);
                 tempVal.setText(jsonObject.getString("codigo"));
 
-                tempVal = findViewById(R.id.txtNombre);
+               // tempVal = findViewById(R.id.txtNombre);
                 tempVal.setText(jsonObject.getString("nombre"));
 
-                tempVal = findViewById(R.id.txtMarca);
+               // tempVal = findViewById(R.id.txtMarca);
                 tempVal.setText(jsonObject.getString("marca"));
 
-                tempVal = findViewById(R.id.txtCosto);
+               // tempVal = findViewById(R.id.txtCosto);
                 tempVal.setText(jsonObject.getString("costo"));
 
-                tempVal = findViewById(R.id.txtStock);
+               // tempVal = findViewById(R.id.txtStock);
                 tempVal.setText(jsonObject.getString("stock"));
 
-                tempVal = findViewById(R.id.txtGanancia);
+              //  tempVal = findViewById(R.id.txtGanancia);
                 tempVal.setText(jsonObject.getString("ganancia"));
 
-                tempVal = findViewById(R.id.txtDescripcion);
+               // tempVal = findViewById(R.id.txtDescripcion);
                 tempVal.setText(jsonObject.getString("descripcion"));
 
                 imgproductourl = jsonObject.getString("imgproducto");
@@ -285,6 +274,8 @@ public class MainActivity extends AppCompatActivity {
             mostrarMsg("Error al mostrar los datos: "+ e.getMessage());
         }
     }
+
+    //Boton navegation
 
     private void mostrarMsg(String msg){
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();

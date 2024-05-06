@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+//Cindy
 public class adaptadorImagenes extends BaseAdapter {
     Context context;
     ArrayList<productos> datosProductosArrayList;
