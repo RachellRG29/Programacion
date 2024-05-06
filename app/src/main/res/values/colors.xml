@@ -2,20 +2,16 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="greygrey">#222831</color>
     <color name="grey">#31363F</color>
 
     <!-- PALETA DE COLORES-->
     <color name="blueblue">#146C94</color>
     <color name="blue">#19A7CE</color>
-    <color name="sky">#AFD3E2</color>
+    <color name="sky">#A0E6FF</color>
 
-    <color name="redmaroon">#D35C65</color>
+    <color name="redmaroon">#E6646E</color>
     <color name="red">#FF8087</color>
     <color name="beige">#F6F1F1</color>
 
-    <!-- colores secundarios-->
-    <color name="purple">#D2BEFF</color>
-    <color name="lila">#E6CDFF</color>
 
 </resources>

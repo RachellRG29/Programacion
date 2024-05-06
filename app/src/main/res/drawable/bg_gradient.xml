@@ -3,7 +3,7 @@
 
     <!-- Degradado del fondo de la lista delivery-->
     <gradient android:startColor="@color/blue"
-        android:endColor="@color/sky"
+        android:endColor="@color/beige"
         android:angle="30"
 
         />

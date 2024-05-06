@@ -35,7 +35,6 @@ public class lista_delivery extends AppCompatActivity {
     //VARIABLES
     BottomNavigationView bottomNavigationView;
     Bundle parametros = new Bundle();
-    FloatingActionButton btnIragregar;
     ListView lts;
     Cursor cProductos;
     DB dbProductos;
@@ -65,6 +64,8 @@ public class lista_delivery extends AppCompatActivity {
         bottomNavigationView.setOnItemReselectedListener(item -> {
             switch (item.getItemId()){
                 case R.id.navPrincipal: //Lista tulip
+                    //parametros.putString("accion", "nuevo");
+                    //irAgregar(parametros);
                     return;
                 case R.id.navAgregar: //Agregar tulip
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
@@ -76,17 +77,6 @@ public class lista_delivery extends AppCompatActivity {
                     return;
             }
         }); //fin navegation
-
-
-        //Boton para cambiar de activitys, ir a agregar
-       /* btnIragregar = findViewById(R.id.btnAbrirNuevosProductos);
-        btnIragregar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                parametros.putString("accion", "nuevo");
-                irAgregar(parametros);
-            }
-        });*/
         try{
             di = new detectarInternet(getApplicationContext());
             if(di.hayConexionInternet()){ //online
@@ -234,12 +224,12 @@ public class lista_delivery extends AppCompatActivity {
             switch (item.getItemId()){
                 case R.id.mnxAgregar:
                     parametros.putString("accion", "nuevo");
-                    //irAgregar(parametros);
+                    irAgregar(parametros);
                     break;
                 case R.id.mnxModificar:
                     parametros.putString("accion","modificar");
                     parametros.putString("productos", datosJSON.getJSONObject(posicion).toString());
-                    //irAgregar(parametros);
+                    irAgregar(parametros);
                     break;
                 case R.id.mnxEliminar:
                     eliminarProductos();
@@ -379,7 +369,12 @@ public class lista_delivery extends AppCompatActivity {
         });
     }
 
+    private void irAgregar(Bundle parametros){
+        Intent abrirVentana = new Intent(getApplicationContext(), MainActivity.class);
+        abrirVentana.putExtras(parametros); //
+        startActivity(abrirVentana);
 
+    }
 
     //Metodo para cambiar el color de la barra de estado
     private void cambiarColorBarraEstado(int color) {

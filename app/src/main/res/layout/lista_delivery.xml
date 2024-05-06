@@ -35,38 +35,38 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/comfortaa_bold"
             android:text="Delivery Consolas"
-            android:textColor="@color/beige"
-            android:textSize="28sp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/txt_busqueda"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.075"
+            app:layout_constraintHorizontal_bias="0.061"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.571" />
 
+        <!-- Framelayout para las categorias  -->
         <EditText
             android:id="@+id/txt_busqueda"
-            android:layout_width="300dp"
+            android:layout_width="320dp"
             android:layout_height="44dp"
             android:layout_alignBottom="@+id/toolbar"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:backgroundTint="@color/purple"
-            android:drawableEnd="@drawable/lupa"
+            android:background="@drawable/bg_boton2"
+            android:drawableStart="@drawable/lupa"
             android:drawableTint="@color/sky"
+            android:fontFamily="@font/comfortaa_regular"
             android:hint="Buscar"
             android:inputType="text"
-            android:textSize="20sp"
-            android:fontFamily="@font/comfortaa_regular"
             android:textColorHint="@color/sky"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/toolbar"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.144"
+            app:layout_constraintHorizontal_bias="0.175"
             app:layout_constraintStart_toStartOf="@+id/toolbar"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.818" />
 
-        <!-- Framelayout para las categorias  -->
         <FrameLayout
             android:id="@+id/fragmentCategorias"
             android:layout_width="match_parent"
@@ -90,10 +90,14 @@
         <ListView
             android:id="@+id/ltsProductos"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="500dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNavegation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragmentCategorias" />
+            app:layout_constraintTop_toBottomOf="@+id/fragmentCategorias"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintHorizontal_weight="0"/>
 
         <!-- bottom navegation-->
         <com.google.android.material.bottomnavigation.BottomNavigationView
