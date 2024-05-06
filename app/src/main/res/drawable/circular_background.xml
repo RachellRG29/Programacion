@@ -3,7 +3,7 @@
     <solid android:color="@android:color/transparent"/>
     <stroke
         android:width="4dp"
-        android:color="@color/blueblue"/>
+        android:color="@color/beige"/>
     <size
         android:width="150dp"
         android:height="150dp"/>
