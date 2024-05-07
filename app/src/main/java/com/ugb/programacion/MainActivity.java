@@ -57,13 +57,13 @@ public class MainActivity extends AppCompatActivity {
         utls = new utilidades();
 
         //valores para los productos
-       /* EditText txtcodigo= (EditText)findViewById(R.id.txtCodigo);
+        EditText txtcodigo= (EditText)findViewById(R.id.txtCodigo);
         EditText txtnombre= (EditText)findViewById(R.id.txtNombre);
         EditText txtmarca= (EditText)findViewById(R.id.txtMarca);
         EditText txtcosto= (EditText)findViewById(R.id.txtCosto);
         EditText txtstock= (EditText)findViewById(R.id.txtStock);
         EditText txtganancia= (EditText)findViewById(R.id.txtGanancia);
-        EditText txtdescripcion= (EditText)findViewById(R.id.txtDescripcion); */
+        EditText txtdescripcion= (EditText)findViewById(R.id.txtDescripcion);
 
         imageCirProducto = findViewById(R.id.imgProductoVista); //
         btnChangeImage = findViewById(R.id.btnCambiarImagen);
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         }); //fin navegation
 
 
-/*
+
         //boton guardar producto
         btnGuardar = findViewById(R.id.btnGuardarProducto);
         btnGuardar.setOnClickListener(new View.OnClickListener() {
@@ -201,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
         });
         mostrarDatosProductos(); //mostrar los datos del producto
 
-        */
+
 
 
     } //fin ONCREATE :3
@@ -276,6 +276,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Boton navegation
+    private void irVista(){ //ir o regresar a la lista
+        Intent abrirVentana = new Intent(getApplicationContext(), lista_delivery.class);
+        startActivity(abrirVentana);
+    }
 
     private void mostrarMsg(String msg){
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
