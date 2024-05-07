@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Menu bottom navegation-->
+    <item
+        android:id="@+id/navPrincipal"
+        android:title="Principal"
+        android:icon="@drawable/consola_principal"/>
+    <item
+        android:id="@+id/navAgregar"
+        android:title="Agregar"
+        android:icon="@drawable/boton_agregar"/>
+    <item
+        android:id="@+id/navMensajeria"
+        android:title="Mensajeria"
+        android:icon="@drawable/burbuja_mensajeria"/>
+</menu>
