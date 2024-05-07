@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "677477288545",
+    "project_id": "proyectofinal-4959e",
+    "storage_bucket": "proyectofinal-4959e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:677477288545:android:d2635c7838d468d82eb820",
+        "android_client_info": {
+          "package_name": "com.ugb.programacion"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCx0RyKUVJV5cGuGDXXcD432T2OM2ZZW68"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
