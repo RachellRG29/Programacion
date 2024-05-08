@@ -44,11 +44,16 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-    //circular
+    //circular: imagenes en listview, galeria, mensajeria
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
-    //pick image
+    //recortar imagen: mensajeria
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+
+    //pick image: activity agregar, para seleccionar camara y galeria
     implementation 'com.github.dhaval2404:imagepicker:2.1'
+
+    //
 
 
     

@@ -86,11 +86,11 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationView.setOnItemReselectedListener(item -> {
             switch (item.getItemId()){
-                case R.id.navPrincipal: //Lista tulip
+                case R.id.navPrincipal: //Lista delivery: ConsoleExpress
                     startActivity(new Intent(getApplicationContext(), lista_delivery.class));
                     finish();
                     return;
-                case R.id.navAgregar: //Agregar tulip
+                case R.id.navAgregar: //Agregar Consolas MainActivity:Agregar
                     return;
                 case R.id.navMensajeria: //Mensajeria
                     startActivity(new Intent(getApplicationContext(), Mensajeria.class));
