@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //cambiar color barra estado
-        cambiarColorBarraEstado(getResources().getColor(R.color.blueblue));
+        cambiarColorBarraEstado(getResources().getColor(R.color.darkblue));
         di = new detectarInternet(getApplicationContext());
         utls = new utilidades();
 

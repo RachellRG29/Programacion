@@ -53,7 +53,7 @@ public class lista_delivery extends AppCompatActivity {
         setContentView(R.layout.lista_delivery);
 
         //cambiar color barra estado
-        cambiarColorBarraEstado(getResources().getColor(R.color.blueblue));
+        cambiarColorBarraEstado(getResources().getColor(R.color.darkblue));
 
         dbProductos = new DB(lista_delivery.this,"",null,1);
 

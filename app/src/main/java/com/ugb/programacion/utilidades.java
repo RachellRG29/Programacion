@@ -3,8 +3,8 @@ package com.ugb.programacion;
 import java.util.Base64;
 public class utilidades {
     //ipconfig para revisar la direccion de la maquina, puede cambiar
-    static String urlConsulta = "http://192.168.171.150:5984/yaritza/_design/cindy/_view/cindy";
-    static String urlMto = "http://192.168.171.150:5984/yaritza";
+    static String urlConsulta = "http://192.168.1.2:5984/yaritza/_design/cindy/_view/cindy";
+    static String urlMto = "http://192.168.1.2:5984/yaritza";
     static String user = "Cindy";
     static String passwd = "couch129.29";
     static String credencialesCodificadas = Base64.getEncoder().encodeToString((user +":"+ passwd).getBytes());
@@ -25,4 +25,18 @@ public class utilidades {
   "ganancia": "6",
   "descripcion": "lorem imsup",
   "imgproducto": ""
+
+
+
+
+
+  <ListView
+                android:id="@+id/ltsProductos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
  */

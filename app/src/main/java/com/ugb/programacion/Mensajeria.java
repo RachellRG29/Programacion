@@ -19,7 +19,7 @@ public class Mensajeria extends AppCompatActivity {
         setContentView(R.layout.activity_mensajeria);
 
         //cambiar color barra estado
-        cambiarColorBarraEstado(getResources().getColor(R.color.blueblue));
+        cambiarColorBarraEstado(getResources().getColor(R.color.darkblue));
 
         bottomNavigationView = findViewById(R.id.bottomNavegation);
         bottomNavigationView.setSelectedItemId(R.id.navMensajeria);
