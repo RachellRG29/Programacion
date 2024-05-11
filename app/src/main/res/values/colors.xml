@@ -5,13 +5,13 @@
     <color name="grey">#31363F</color>
 
     <!-- PALETA DE COLORES-->
-    <color name="blueblue">#146C94</color>
-    <color name="blue">#19A7CE</color>
-    <color name="sky">#A0E6FF</color>
+    <color name="darkblue">#004182</color>
+    <color name="blueblue">#22559C</color>
+    <color name="blue">#84B9EF</color>
+    <color name="sky">#BAD7E9</color>
 
-    <color name="redmaroon">#E6646E</color>
-    <color name="red">#FF8087</color>
-    <color name="beige">#F6F1F1</color>
-
+    <color name="redmaroon">#DC3E57</color>
+    <color name="red">#E1646E</color>
+    <color name="beige">#FBE4C9</color>
 
 </resources>

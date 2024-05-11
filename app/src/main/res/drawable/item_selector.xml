@@ -3,7 +3,7 @@
 
     <!-- Item selector para bottom navegation-->
    <item android:state_checked="true"
-         android:color="@color/beige"/>
+         android:color="@color/white"/>
 
     <item android:state_checked="false"
         android:color="@color/blue"/>

@@ -24,8 +24,8 @@ public class Login extends AppCompatActivity {
         cambiarColorBarraEstado(getResources().getColor(R.color.blueblue));
 
         //valores para usuario y contraseña
-        EditText txtUsuarioL= (EditText)findViewById(R.id.txt_usuario_login);
-        EditText txtContrasenaL= (EditText)findViewById(R.id.txt_contrasena_login);
+        EditText txtUsuarioL= (EditText)findViewById(R.id.txt_nombreusuario);
+        EditText txtContrasenaL= (EditText)findViewById(R.id.txt_contrasena);
 
         //txt lbl_signup_aActivitySignup a Registrar en caso de no tener cuenta
         TextView lblRegistrar = (TextView) findViewById(R.id.lbl_login_aActivitySignup);

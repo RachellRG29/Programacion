@@ -4,122 +4,168 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/beige"
-    android:orientation="vertical"
+    android:background="@color/darkblue"
     tools:context=".Login">
 
-    <!-- Para cambiar de login a registrar -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/group_login"
-        android:layout_width="365dp"
-        android:layout_height="280dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="95dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/imgcontornocons"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:foreground="@drawable/contorno_consola"
+        android:foregroundTint="@color/sky"
+        app:layout_constraintBottom_toTopOf="@+id/grouplogin"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.101">
-
-        <TextView
-            android:id="@+id/lbl_usuario"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/comfortaa_bold"
-            android:text="USUARIO"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.105"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.200" />
-
-        <EditText
-            android:id="@+id/txt_usuario_login"
-            android:layout_width="301dp"
-            android:layout_height="48dp"
-            android:fontFamily="@font/comfortaa_regular"
-            android:inputType="text"
-            android:textColor="@color/blue"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lbl_usuario"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/lbl_contraseña"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/comfortaa_bold"
-            android:text="CONTRASEÑA"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.105"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_usuario_login"
-            app:layout_constraintVertical_bias="0.200" />
-
-        <EditText
-            android:id="@+id/txt_contrasena_login"
-            android:layout_width="297dp"
-            android:layout_height="48dp"
-            android:fontFamily="@font/comfortaa_regular"
-            android:inputType="textPassword"
-            android:textColor="@color/blue"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.426"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lbl_contraseña"
-            app:layout_constraintVertical_bias="0.0" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <Button
-        android:id="@+id/btn_ingresar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:backgroundTint="@color/blueblue"
-        android:fontFamily="@font/comfortaa_bold"
-        android:gravity="center"
-        android:text="INGRESAR"
-        android:textColor="@color/blue"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/group_login"
-        app:layout_constraintVertical_bias="0.393" />
+        app:layout_constraintVertical_bias="0.324" />
 
     <TextView
-        android:id="@+id/lbl_login_aActivitySignup"
+        android:id="@+id/lbldelcons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_ingresar"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:fontFamily="@font/comfortaa_regular"
-        android:text="¿No tienes cuenta? ¡Registrate!"
-        android:textAlignment="center"
-        android:textColor="@color/blueblue"
-        android:textSize="16sp"
+        android:text="ConsoleExpress"
+        android:fontFamily="@font/comfortaa_bold"
+        android:textColor="@color/sky"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/grouplogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgcontornocons"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/grouplogin"
+        android:layout_width="match_parent"
+        android:layout_height="520dp"
+        android:background="@drawable/bg_color_login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_ingresar" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardlogin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:cardCornerRadius="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.160">
+
+            <LinearLayout
+                android:id="@+id/linearLogin"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/sky"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp" />
+
+                <TextView
+                    android:id="@+id/lblnombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:text=" NOMBRE"
+                    android:fontFamily="@font/comfortaa_bold"
+                    android:textColor="@color/blueblue"
+                    android:textSize="17sp" />
+
+                <EditText
+                    android:id="@+id/txt_nombreusuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Usuario"
+                    android:fontFamily="@font/comfortaa_regular"
+                    android:textColorHint="@color/blueblue"
+                    android:textColor="@color/darkblue"
+                    android:inputType="text"
+                    android:textSize="18sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+                <TextView
+                    android:id="@+id/lblcontraseña"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:text=" CONTRASEÑA"
+                    android:fontFamily="@font/comfortaa_bold"
+                    android:textColor="@color/blueblue"
+                    android:inputType="text"
+                    android:textSize="17sp" />
+
+
+                <EditText
+                    android:id="@+id/txt_contrasena"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Contraseña"
+                    android:fontFamily="@font/comfortaa_regular"
+                    android:inputType="textPassword"
+                    android:textColorHint="@color/blueblue"
+                    android:textColor="@color/darkblue"
+                    android:textSize="18sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp" />
+
+                <Button
+                    android:id="@+id/btn_ingresar"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/comfortaa_bold"
+                    android:background="@drawable/bg_boton_login"
+                    android:text="Ingresa"
+                    android:textSize="16sp"
+                    android:textColor="@color/red"/>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp" />
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/lbl_login_aActivitySignup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:fontFamily="@font/comfortaa_regular"
+            android:text="¿No tienes cuenta? ¡Registrate!"
+            android:textAlignment="center"
+            android:textColor="@color/darkblue"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardlogin" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

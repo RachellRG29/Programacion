@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/beige"
+    android:background="@color/sky"
     tools:context=".MainActivity">
 
     <!-- Agregar productos Tulip TOOLBAR-->
@@ -108,7 +108,7 @@
             android:id="@+id/btnCambiarImagen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:backgroundTint="@color/beige"
+            app:backgroundTint="@color/sky"
             android:foreground="@drawable/galeria"
             android:foregroundTint="@color/blueblue"
             android:foregroundGravity="fill"
