@@ -4,84 +4,198 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@color/red"
     tools:context=".RegisterActivity">
 
-    <!-- Activity registrar  -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        app:cardCornerRadius="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/imgcontornocons"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:foreground="@drawable/contorno_consola"
+        android:foregroundTint="@color/beige"
+        app:layout_constraintBottom_toTopOf="@+id/grouplogin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.064">
+        app:layout_constraintVertical_bias="0.324" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="10dp">
-
-            <EditText
-                android:id="@+id/nombre"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Nombre"
-                android:inputType="text"
-                 />
-
-            <EditText
-                android:id="@+id/correo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Correo"
-                android:inputType="textEmailAddress" />
-
-            <EditText
-                android:id="@+id/contrasena"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Contraseña"
-                android:inputType="textPassword" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="15dp" />
-
-            <Button
-                android:id="@+id/btn_registro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Registrarme" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-
-    <!-- Para cambiar de registrar a login  -->
     <TextView
-        android:id="@+id/lbl_signup_aActivityLogin"
+        android:id="@+id/lbldelcons"
         android:layout_width="wrap_content"
-        android:layout_height="23dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:fontFamily="@font/comfortaa_regular"
-        android:text="¿Tienes cuenta? ¡Ingresa!"
-        android:textAlignment="center"
-        android:textColor="@color/blueblue"
-        android:textSize="16sp"
+        android:layout_height="wrap_content"
+        android:text="¡Bienvenidos!"
+        android:fontFamily="@font/comfortaa_bold"
+        android:textColor="@color/beige"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/grouplogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgcontornocons"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/grouplogin"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:background="@drawable/bg_color_login"
+        android:backgroundTint="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
-        app:layout_constraintVertical_bias="0.829" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardlogin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:cardCornerRadius="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.160">
+
+            <LinearLayout
+                android:id="@+id/linearLogin"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/blueblue"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp" />
+
+                <TextView
+                    android:id="@+id/lblnombre_rgt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:text=" NOMBRE"
+                    android:fontFamily="@font/comfortaa_bold"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+
+                <EditText
+                    android:id="@+id/txt_nombreusuario_register"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Usuario"
+                    android:fontFamily="@font/comfortaa_regular"
+                    android:textColorHint="@color/beige"
+                    android:textColor="@color/white"
+                    android:inputType="text"
+                    android:textSize="18sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+                <TextView
+                    android:id="@+id/lblcorreo_rgt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:text=" CORREO"
+                    android:fontFamily="@font/comfortaa_bold"
+                    android:textColor="@color/white"
+                    android:inputType="text"
+                    android:textSize="17sp" />
+
+
+                <EditText
+                    android:id="@+id/txt_correo_register"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Correo"
+                    android:fontFamily="@font/comfortaa_regular"
+                    android:inputType="textWebEmailAddress"
+                    android:textColorHint="@color/beige"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+                <TextView
+                    android:id="@+id/lblcontraseña_rgt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:text=" CONTRASEÑA"
+                    android:fontFamily="@font/comfortaa_bold"
+                    android:textColor="@color/white"
+                    android:inputType="text"
+                    android:textSize="17sp" />
+
+
+                <EditText
+                    android:id="@+id/txt_contrasena_register"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Contraseña"
+                    android:fontFamily="@font/comfortaa_regular"
+                    android:inputType="textPassword"
+                    android:textColorHint="@color/beige"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp" />
+
+                <Button
+                    android:id="@+id/btn_registrar"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/comfortaa_bold"
+                    android:background="@drawable/bg_boton_login"
+                    android:backgroundTint="@color/beige"
+                    android:text="Registrar"
+                    android:textSize="16sp"
+                    android:textColor="@color/darkblue"/>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp" />
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/lbl_register_aActivityLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:fontFamily="@font/comfortaa_regular"
+            android:text="¿Tienes cuenta? Ingresa!"
+            android:textAlignment="center"
+            android:textColor="@color/darkblue"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardlogin" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

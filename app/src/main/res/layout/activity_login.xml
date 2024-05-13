@@ -24,7 +24,7 @@
         android:id="@+id/lbldelcons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ConsoleExpress"
+        android:text="Console Express"
         android:fontFamily="@font/comfortaa_bold"
         android:textColor="@color/sky"
         android:textSize="25sp"
@@ -136,9 +136,10 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/comfortaa_bold"
                     android:background="@drawable/bg_boton_login"
+                    android:backgroundTint="@color/red"
                     android:text="Ingresa"
                     android:textSize="16sp"
-                    android:textColor="@color/red"/>
+                    android:textColor="@color/beige"/>
 
                 <Space
                     android:layout_width="match_parent"

@@ -37,23 +37,23 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         //cambiar color barra estado
-        cambiarColorBarraEstado(getResources().getColor(R.color.grey));
+        cambiarColorBarraEstado(getResources().getColor(R.color.red));
 
        // mFirestore = FirebaseFirestore.getInstance();
        // mAuth = FirebaseAuth.getInstance();
 
         //txt lbl_signup_aActivitySignup a Registrar en caso de no tener cuenta
-        TextView lblIngresar = (TextView) findViewById(R.id.lbl_signup_aActivityLogin);
+        TextView lblIngresar = (TextView) findViewById(R.id.lbl_register_aActivityLogin);
         lblIngresar.setOnClickListener(v -> openRegistrarlbl());
 
         //Valores usuario, contraseña y email
-        EditText name = (EditText)findViewById(R.id.nombre);
-        EditText email = (EditText)findViewById(R.id.correo);
-        EditText password = (EditText)findViewById(R.id.contrasena);
+        EditText name = (EditText)findViewById(R.id.txt_nombreusuario_register);
+        EditText email = (EditText)findViewById(R.id.txt_correo_register);
+        EditText password = (EditText)findViewById(R.id.txt_contrasena_register);
 
 
         //Boton para registrar
-        Button btn_register = findViewById(R.id.btn_registro);
+        Button btn_register = findViewById(R.id.btn_registrar);
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

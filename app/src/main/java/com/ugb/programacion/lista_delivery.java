@@ -36,11 +36,10 @@ public class lista_delivery extends AppCompatActivity {
     //VARIABLES
     BottomNavigationView bottomNavigationView;
     Bundle parametros = new Bundle();
-    ListView lts;
+    ListView lts, ltsconsolas;
     Cursor cProductos;
     DB dbProductos;
     productos misProductos, productoSeleccionado;
-
     final ArrayList<productos> alProductos=new ArrayList<productos>();
     final ArrayList<productos> alProductosCopy=new ArrayList<productos>();
     JSONArray datosJSON;
@@ -65,24 +64,10 @@ public class lista_delivery extends AppCompatActivity {
 
         bottomNavigationView.setOnItemReselectedListener(item -> {
             switch (item.getItemId()){
-                case R.id.navPrincipal: //Lista tulip
-                    //listview para pasar a otro mainactivity para visualizar mas activitys
-                    ListView listView = findViewById(R.id.ltsProductos);
-                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            // Aquí se ejecutará el código cuando se haga clic en un elemento de listview_imagenes
-
-                            //continuar luego
-                            //irConsolas();
-                        }
-                    });
-
-
-
+                case R.id.navPrincipal: //Lista delivery: Console express
 
                     return;
-                case R.id.navAgregar: //Agregar tulip
+                case R.id.navAgregar: //Agregar Console express
                     //startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     parametros.putString("accion", "nuevo");
                     irAgregar(parametros);
@@ -393,10 +378,11 @@ public class lista_delivery extends AppCompatActivity {
 
     }
 
-    private  void irConsolas(){
+    /*private  void irConsolas(){
         Intent abrirVentana = new Intent(getApplicationContext(), adaptador_consolas.class);
         startActivity(abrirVentana);
-    }
+
+    }*/
 
 
     //Metodo para cambiar el color de la barra de estado
