@@ -1,5 +1,6 @@
 package com.ugb.programacion;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -38,7 +39,8 @@ public class lista_delivery extends AppCompatActivity {
     ListView lts;
     Cursor cProductos;
     DB dbProductos;
-    productos misProductos;
+    productos misProductos, productoSeleccionado;
+
     final ArrayList<productos> alProductos=new ArrayList<productos>();
     final ArrayList<productos> alProductosCopy=new ArrayList<productos>();
     JSONArray datosJSON;
@@ -64,11 +66,26 @@ public class lista_delivery extends AppCompatActivity {
         bottomNavigationView.setOnItemReselectedListener(item -> {
             switch (item.getItemId()){
                 case R.id.navPrincipal: //Lista tulip
-                    //parametros.putString("accion", "nuevo");
-                    //irAgregar(parametros);
+                    //listview para pasar a otro mainactivity para visualizar mas activitys
+                    ListView listView = findViewById(R.id.ltsProductos);
+                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            // Aquí se ejecutará el código cuando se haga clic en un elemento de listview_imagenes
+
+                            //continuar luego
+                            //irConsolas();
+                        }
+                    });
+
+
+
+
                     return;
                 case R.id.navAgregar: //Agregar tulip
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    //startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    parametros.putString("accion", "nuevo");
+                    irAgregar(parametros);
                     finish();
                     return;
                 case R.id.navMensajeria: //Mensajeria
@@ -248,7 +265,7 @@ public class lista_delivery extends AppCompatActivity {
     private void eliminarProductos(){
         try {
             AlertDialog.Builder confirmacion = new AlertDialog.Builder(lista_delivery.this);
-            confirmacion.setTitle("Esta seguro de Eliminar a: ");
+            confirmacion.setTitle("Esta seguro de Eliminar: ");
             confirmacion.setMessage(datosJSON.getJSONObject(posicion).getJSONObject("value").getString("nombre"));
             confirmacion.setPositiveButton("SI", new DialogInterface.OnClickListener() {
                 @Override
@@ -256,10 +273,10 @@ public class lista_delivery extends AppCompatActivity {
                     try {
                         String respuesta = dbProductos.administrar_productos("eliminar", new String[]{"", "", datosJSON.getJSONObject(posicion).getJSONObject("value").getString("idProducto")});
                         if (respuesta.equals("ok")) {
-                            mostrarMsg("Producto eliminado con exito.");
+                            mostrarMsg("Consola eliminada con exito.");
                             obtenerProductos();
                         } else {
-                            mostrarMsg("Error al eliminar el producto: " + respuesta);
+                            mostrarMsg("Error al eliminar la consola: " + respuesta);
                         }
                     }catch (Exception e){
                         mostrarMsg("Error al eliminar Datos: "+e.getMessage());
@@ -306,10 +323,10 @@ public class lista_delivery extends AppCompatActivity {
                 }while(cProductos.moveToNext());
                 mostrarDatosProductos();
             }else{
-                mostrarMsg("No hay productos que mostrar");
+                mostrarMsg("No hay consolas que mostrar");
             }
         }catch (Exception e){
-            mostrarMsg("Error al obtener productos: "+ e.getMessage());
+            mostrarMsg("Error al obtener consolas: "+ e.getMessage());
         }
     }
 
@@ -317,7 +334,7 @@ public class lista_delivery extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
     }
 
-    //Buscar productos skincare
+    //Buscar productos consolas
     private void buscarProductos(){
 
         TextView tempVal;
@@ -371,10 +388,16 @@ public class lista_delivery extends AppCompatActivity {
 
     private void irAgregar(Bundle parametros){
         Intent abrirVentana = new Intent(getApplicationContext(), MainActivity.class);
-        abrirVentana.putExtras(parametros); //
+        abrirVentana.putExtras(parametros); //abrir actividad y modificar
         startActivity(abrirVentana);
 
     }
+
+    private  void irConsolas(){
+        Intent abrirVentana = new Intent(getApplicationContext(), adaptador_consolas.class);
+        startActivity(abrirVentana);
+    }
+
 
     //Metodo para cambiar el color de la barra de estado
     private void cambiarColorBarraEstado(int color) {

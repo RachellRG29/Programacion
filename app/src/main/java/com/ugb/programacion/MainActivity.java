@@ -87,7 +87,8 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnItemReselectedListener(item -> {
             switch (item.getItemId()){
                 case R.id.navPrincipal: //Lista delivery: ConsoleExpress
-                    startActivity(new Intent(getApplicationContext(), lista_delivery.class));
+                    //startActivity(new Intent(getApplicationContext(), lista_delivery.class));
+                    irVista();
                     finish();
                     return;
                 case R.id.navAgregar: //Agregar Consolas MainActivity:Agregar
@@ -243,25 +244,25 @@ public class MainActivity extends AppCompatActivity {
                 rev = jsonObject.getString("_rev");
                 idProducto = jsonObject.getString("idProducto");
 
-               // tempVal = findViewById(R.id.txtCodigo);
+                tempVal = findViewById(R.id.txtCodigo);
                 tempVal.setText(jsonObject.getString("codigo"));
 
-               // tempVal = findViewById(R.id.txtNombre);
+                tempVal = findViewById(R.id.txtNombre);
                 tempVal.setText(jsonObject.getString("nombre"));
 
-               // tempVal = findViewById(R.id.txtMarca);
+                tempVal = findViewById(R.id.txtMarca);
                 tempVal.setText(jsonObject.getString("marca"));
 
-               // tempVal = findViewById(R.id.txtCosto);
+                tempVal = findViewById(R.id.txtCosto);
                 tempVal.setText(jsonObject.getString("costo"));
 
-               // tempVal = findViewById(R.id.txtStock);
+                tempVal = findViewById(R.id.txtStock);
                 tempVal.setText(jsonObject.getString("stock"));
 
-              //  tempVal = findViewById(R.id.txtGanancia);
+                tempVal = findViewById(R.id.txtGanancia);
                 tempVal.setText(jsonObject.getString("ganancia"));
 
-               // tempVal = findViewById(R.id.txtDescripcion);
+                tempVal = findViewById(R.id.txtDescripcion);
                 tempVal.setText(jsonObject.getString("descripcion"));
 
                 imgproductourl = jsonObject.getString("imgproducto");

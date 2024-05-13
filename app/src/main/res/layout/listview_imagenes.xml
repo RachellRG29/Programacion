@@ -8,7 +8,7 @@
     <!--Grupo para organizar  -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="220dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
@@ -18,213 +18,137 @@
         android:layout_marginEnd="0dp"
        >
 
-        <!--Grupo el fondo de color  -->
-
-        <!--Grupo para  el lado derecho-->
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/backgroud_agregar"
-            android:layout_width="232dp"
-            android:layout_height="219dp"
+            android:layout_width="370dp"
+            android:layout_height="150dp"
             android:layout_alignParentStart="true"
-            android:background="@drawable/bg_color"
+            android:background="@drawable/bg_color_ltsimagenes"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.478"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintVertical_bias="0.009">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imgProductoListVista"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="116dp"
+                android:layout_height="116dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="36dp"
-                android:layout_marginTop="65dp"
-                android:layout_marginEnd="52dp"
-                android:layout_marginBottom="76dp"
                 android:rotation="0"
-                android:src="@drawable/circular_backgroundvista"
+                android:src="@drawable/circular_background"
+                android:tint="@color/beige"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.833"
+                app:layout_constraintHorizontal_bias="0.059"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/lblCodigo"
-                android:layout_width="120dp"
-                android:layout_height="29dp"
-                android:layout_alignParentStart="true"
+                android:id="@+id/lblNombre"
+                android:layout_width="180dp"
+                android:layout_height="40dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginTop="18dp"
-                android:layout_marginBottom="201dp"
                 android:fontFamily="@font/comfortaa_bold"
-                android:gravity="center"
-                android:text="Código"
-                android:textColor="@color/beige"
-                android:textSize="20sp"
+                android:gravity="center_vertical"
+                android:text="Nombre"
+                android:textColor="@color/white"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.317"
+                app:layout_constraintStart_toEndOf="@+id/imgProductoListVista"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.413" />
+                app:layout_constraintVertical_bias="0.145" />
+
+            <ImageView
+                android:id="@+id/lineavertical"
+                android:layout_width="130dp"
+                android:layout_height="3dp"
+                android:background="@color/blueblue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.172"
+                app:layout_constraintStart_toEndOf="@+id/imgProductoListVista"
+                app:layout_constraintTop_toBottomOf="@+id/lblNombre" />
+
+            <TextView
+                android:id="@+id/lblMarca"
+                android:layout_width="130dp"
+                android:layout_height="30dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:fontFamily="@font/comfortaa_bold"
+                android:gravity="center_vertical"
+                android:text="Marca"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.172"
+                app:layout_constraintStart_toEndOf="@+id/imgProductoListVista"
+                app:layout_constraintTop_toBottomOf="@+id/lineavertical"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/lblPrecio"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
+                android:layout_width="130dp"
+                android:layout_height="30dp"
                 android:layout_below="@+id/imgProductoListVista"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="20dp"
                 android:fontFamily="@font/comfortaa_bold"
                 android:gravity="center_vertical"
-                android:text="Precio"
+                android:text="$ Precio"
                 android:textColor="@color/beige"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.212"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imgProductoListVista"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintHorizontal_bias="0.172"
+                app:layout_constraintStart_toEndOf="@+id/imgProductoListVista"
+                app:layout_constraintTop_toBottomOf="@+id/lblMarca"
+                app:layout_constraintVertical_bias="1.0" />
 
             <TextView
                 android:id="@+id/lblStock"
-                android:layout_width="61dp"
-                android:layout_height="40dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_below="@+id/imgProductoListVista"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginEnd="12dp"
-                android:layout_marginBottom="20dp"
+                android:background="@drawable/bg_boton"
                 android:fontFamily="@font/comfortaa_bold"
-                android:gravity="center_vertical"
+                android:gravity="center"
                 android:text="Stock"
-                android:textColor="@color/beige"
+                android:textColor="@color/sky"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.69"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/lblPrecio"
-                app:layout_constraintTop_toBottomOf="@+id/imgProductoListVista"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/lblDescripcion"
-            android:layout_width="156dp"
-            android:layout_height="50dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/comfortaa_bold"
-            android:gravity="center|fill_horizontal"
-            android:text="Descripcion"
-            android:textColor="@color/blueblue"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.651"
-            app:layout_constraintStart_toEndOf="@+id/backgroud_agregar"
-            app:layout_constraintTop_toBottomOf="@+id/lblMarca" />
-
-        <TextView
-            android:id="@+id/lblGanancia"
-            android:layout_width="83dp"
-            android:layout_height="40dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:fontFamily="@font/comfortaa_bold"
-            android:gravity="center_vertical"
-            android:text="Ganancia"
-            android:textColor="@color/blueblue"
-            android:textSize="14sp"
+        <Space
+            android:id="@+id/space"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.516"
-            app:layout_constraintStart_toEndOf="@+id/lblCosto"
-            app:layout_constraintTop_toBottomOf="@+id/lblDescripcion"
-            app:layout_constraintVertical_bias="0.03" />
-
-        <TextView
-            android:id="@+id/lblCosto"
-            android:layout_width="70dp"
-            android:layout_height="40dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:fontFamily="@font/comfortaa_bold"
-            android:gravity="center_vertical"
-            android:text="Costo"
-            android:textColor="@color/blueblue"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.137"
-            app:layout_constraintStart_toEndOf="@+id/backgroud_agregar"
-            app:layout_constraintTop_toBottomOf="@+id/lblDescripcion"
-            app:layout_constraintVertical_bias="0.03" />
-
-        <TextView
-            android:id="@+id/lblMarca"
-            android:layout_width="156dp"
-            android:layout_height="50dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:fontFamily="@font/comfortaa_bold"
-            android:gravity="center_vertical"
-            android:text="Marca"
-            android:textColor="@color/blueblue"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.64"
-            app:layout_constraintStart_toEndOf="@+id/backgroud_agregar"
-            app:layout_constraintTop_toBottomOf="@+id/lblNombre"
-            app:layout_constraintVertical_bias="0.012" />
-
-        <ImageView
-            android:id="@+id/lineavertical"
-            android:layout_width="156dp"
-            android:layout_height="2dp"
-            android:background="@color/redmaroon"
-            app:layout_constraintBottom_toTopOf="@+id/lblDescripcion"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.64"
-            app:layout_constraintStart_toEndOf="@+id/backgroud_agregar"
-            app:layout_constraintTop_toBottomOf="@+id/lblNombre"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/backgroud_agregar"
             app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/lblNombre"
-            android:layout_width="156dp"
-            android:layout_height="40dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:fontFamily="@font/comfortaa_bold"
-            android:gravity="center_vertical"
-            android:text="Nombre"
-            android:textColor="@color/blueblue"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.64"
-            app:layout_constraintStart_toEndOf="@+id/backgroud_agregar"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.012" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

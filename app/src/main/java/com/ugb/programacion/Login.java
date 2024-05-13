@@ -21,7 +21,7 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         //cambiar color barra estado
-        cambiarColorBarraEstado(getResources().getColor(R.color.blueblue));
+        cambiarColorBarraEstado(getResources().getColor(R.color.darkblue));
 
         //valores para usuario y contraseña
         EditText txtUsuarioL= (EditText)findViewById(R.id.txt_nombreusuario);

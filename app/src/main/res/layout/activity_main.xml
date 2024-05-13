@@ -1,155 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/motion_base"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/beige"
+    android:background="@color/blueblue"
     tools:context=".MainActivity">
 
     <!-- Agregar productos Tulip TOOLBAR-->
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/darkblue"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme">
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
     </androidx.appcompat.widget.Toolbar>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/toolbar"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
-
-        <TextView
-            android:id="@+id/lblAgregarConsola"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/comfortaa_bold"
-            android:text="Console Express"
-            android:textColor="@color/white"
-            android:textSize="22sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     <!-- Organizar elementos para agregar demas componentes-->
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="480dp"
+        android:background="@drawable/bg_color_ltsmainact"
         android:layout_below="@+id/toolbar"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="0dp">
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavegation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="1.0">
 
-        <ImageView
-            android:id="@+id/imgfondoblur"
-            android:layout_width="match_parent"
-            android:layout_height="202dp"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0" />
-
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imgProductoVista"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
-            android:rotation="0"
-            android:src="@drawable/circular_background"
-            app:layout_constraintBottom_toBottomOf="@+id/imgfondoblur"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.52" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnCambiarImagen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:backgroundTint="@color/sky"
-            android:foreground="@drawable/galeria"
-            android:foregroundTint="@color/blueblue"
-            android:foregroundGravity="fill"
-            app:layout_constraintBottom_toBottomOf="@+id/imgProductoVista"
-            app:layout_constraintEnd_toEndOf="@+id/imgProductoVista"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/imgProductoVista"
-            app:layout_constraintTop_toTopOf="@+id/imgProductoVista"
-            app:layout_constraintVertical_bias="1.0" />
 
         <!-- Edittext para agregar en la app delivery de consolas-->
 
         <EditText
             android:id="@+id/txtDescripcion"
-            android:layout_width="360dp"
-            android:layout_height="88dp"
+            android:layout_width="351dp"
+            android:layout_height="96dp"
+            android:backgroundTint="@color/blue"
             android:drawableTint="@color/blueblue"
             android:fontFamily="@font/comfortaa_regular"
             android:hint="Descripción"
             android:inputType="textMultiLine"
-            android:textColor="@color/blueblue"
-            android:textColorHint="@color/blue"
+            android:textColor="@color/darkblue"
+            android:textColorHint="@color/blueblue"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/btnGuardarProducto"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.49"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtGanancia"
-            app:layout_constraintVertical_bias="0.291" />
+            app:layout_constraintTop_toBottomOf="@+id/txtNombre"
+            app:layout_constraintVertical_bias="0.057" />
 
         <EditText
             android:id="@+id/txtStock"
             android:layout_width="90dp"
             android:layout_height="44dp"
+            android:backgroundTint="@color/blue"
             android:drawableTint="@color/blueblue"
             android:fontFamily="@font/comfortaa_regular"
             android:gravity="center"
             android:hint="Stock"
             android:inputType="number"
-            android:textColor="@color/blueblue"
-            android:textColorHint="@color/blue"
+            android:textColor="@color/darkblue"
+            android:textColorHint="@color/blueblue"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/bottomNavegation"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.434"
+            app:layout_constraintHorizontal_bias="0.333"
             app:layout_constraintStart_toEndOf="@+id/txtGanancia"
-            app:layout_constraintTop_toBottomOf="@+id/txtMarca"
-            app:layout_constraintVertical_bias="0.048" />
+            app:layout_constraintTop_toBottomOf="@+id/txtDescripcion"
+            app:layout_constraintVertical_bias="0.193" />
 
         <EditText
             android:id="@+id/txtCodigo"
             android:layout_width="200dp"
-            android:layout_height="44dp"
+            android:layout_height="46dp"
+            android:backgroundTint="@color/blue"
             android:drawableTint="@color/blueblue"
             android:fontFamily="@font/comfortaa_regular"
             android:hint="Código"
             android:inputType="text"
-            android:textColor="@color/blueblue"
-            android:textColorHint="@color/blue"
-            android:textSize="22sp"
-            app:layout_constraintBottom_toTopOf="@+id/bottomNavegation"
+            android:textColor="@color/darkblue"
+            android:textColorHint="@color/blueblue"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.118"
+            app:layout_constraintHorizontal_bias="0.119"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgfondoblur"
-            app:layout_constraintVertical_bias="0.055" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.076" />
 
         <EditText
             android:id="@+id/txtNombre"
@@ -159,10 +111,11 @@
             android:fontFamily="@font/comfortaa_regular"
             android:hint="Nombre"
             android:inputType="textPersonName"
-            android:textColor="@color/blueblue"
-            android:textColorHint="@color/blue"
+            android:backgroundTint="@color/blue"
+            android:textColor="@color/darkblue"
+            android:textColorHint="@color/blueblue"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/bottomNavegation"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.118"
             app:layout_constraintStart_toStartOf="parent"
@@ -175,95 +128,150 @@
             android:layout_height="44dp"
             android:drawableTint="@color/blueblue"
             android:fontFamily="@font/comfortaa_regular"
-            android:gravity="center"
+            android:gravity="right"
             android:hint="Marca"
             android:inputType="text"
-            android:textColor="@color/blueblue"
-            android:textColorHint="@color/blue"
+            android:backgroundTint="@color/blue"
+            android:textColor="@color/darkblue"
+            android:textColorHint="@color/blueblue"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/bottomNavegation"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.434"
+            app:layout_constraintHorizontal_bias="0.4"
             app:layout_constraintStart_toEndOf="@+id/txtNombre"
             app:layout_constraintTop_toBottomOf="@+id/txtCodigo"
-            app:layout_constraintVertical_bias="0.048" />
+            app:layout_constraintVertical_bias="0.046" />
+
+
+        <!-- Boton de navegacion para acceder a demas activitys-->
+
+
+        <!-- Guardar o agregar las consolas-->
 
         <EditText
             android:id="@+id/txtCosto"
             android:layout_width="98dp"
             android:layout_height="44dp"
+            android:backgroundTint="@color/blue"
             android:drawableTint="@color/blueblue"
             android:fontFamily="@font/comfortaa_regular"
+            android:gravity="center"
             android:hint="$ Costo"
             android:inputType="numberDecimal"
-            android:textColor="@color/blueblue"
-            android:textColorHint="@color/blue"
+            android:textColor="@color/darkblue"
+            android:textColorHint="@color/blueblue"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/bottomNavegation"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.079"
+            app:layout_constraintHorizontal_bias="0.077"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtNombre"
-            app:layout_constraintVertical_bias="0.048" />
+            app:layout_constraintTop_toBottomOf="@+id/txtDescripcion"
+            app:layout_constraintVertical_bias="0.193" />
 
-
-        <!-- Boton de navegacion para acceder a demas activitys-->
         <EditText
             android:id="@+id/txtGanancia"
             android:layout_width="140dp"
             android:layout_height="44dp"
+            android:backgroundTint="@color/blue"
             android:drawableTint="@color/blueblue"
             android:fontFamily="@font/comfortaa_regular"
             android:gravity="center"
             android:hint="$ Ganancia"
             android:inputType="numberDecimal"
-            android:textColor="@color/blueblue"
-            android:textColorHint="@color/blue"
+            android:textColor="@color/darkblue"
+            android:textColorHint="@color/blueblue"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/bottomNavegation"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.081"
-            app:layout_constraintStart_toEndOf="@+id/txtCosto"
-            app:layout_constraintTop_toBottomOf="@+id/txtNombre"
-            app:layout_constraintVertical_bias="0.048" />
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavegation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/blueblue"
-            app:itemIconSize="36dp"
-            app:itemIconTint="@drawable/item_selector"
-            app:itemRippleColor="@android:color/transparent"
-            app:labelVisibilityMode="unlabeled"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/navegation" />
+            app:layout_constraintHorizontal_bias="0.113"
+            app:layout_constraintStart_toEndOf="@+id/txtCosto"
+            app:layout_constraintTop_toBottomOf="@+id/txtDescripcion"
+            app:layout_constraintVertical_bias="0.193" />
 
-
-        <!-- Guardar o agregar las consolas-->
         <Button
             android:id="@+id/btnGuardarProducto"
             android:layout_width="224dp"
             android:layout_height="36dp"
-            android:layout_marginBottom="50dp"
             android:background="@drawable/bg_boton"
+            android:backgroundTint="@color/redmaroon"
             android:drawableStart="@drawable/relleno_palanca_de_mando"
-            android:drawableTint="@color/red"
+            android:drawableTint="@color/white"
             android:fontFamily="@font/comfortaa_bold"
             android:text="AÑADIR CONSOLA"
-            android:textColor="@color/blueblue"
+            android:textColor="@color/white"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/bottomNavegation"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgfondoblur"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toBottomOf="@+id/txtGanancia" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgProductoVista"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:foreground="@drawable/circular_background"
+        android:foregroundTint="@color/sky"
+        android:rotation="0"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.581" />
 
-</RelativeLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavegation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blueblue"
+        app:itemIconSize="36dp"
+        app:itemIconTint="@drawable/item_selector"
+        app:itemRippleColor="@android:color/transparent"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:menu="@menu/navegation" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnCambiarImagen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:foreground="@drawable/galeria"
+        android:foregroundGravity="fill"
+        android:foregroundTint="@color/sky"
+        app:backgroundTint="@color/blueblue"
+        app:layout_constraintBottom_toBottomOf="@+id/imgProductoVista"
+        app:layout_constraintEnd_toEndOf="@+id/imgProductoVista"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/imgProductoVista"
+        app:layout_constraintTop_toTopOf="@+id/imgProductoVista"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/lblAgregarConsola"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/comfortaa_bold"
+        android:text="Console Express"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar"
+        app:layout_constraintStart_toStartOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
