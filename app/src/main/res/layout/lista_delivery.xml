@@ -15,7 +15,7 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="110dp"
+            android:layout_height="120dp"
             android:background="@color/darkblue"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
@@ -29,6 +29,10 @@
         </androidx.appcompat.widget.Toolbar>
 
         <!-- nombre app  -->
+
+        <!-- Busqueda  -->
+
+
         <TextView
             android:id="@+id/lblnameapp"
             android:layout_width="wrap_content"
@@ -36,19 +40,18 @@
             android:fontFamily="@font/comfortaa_bold"
             android:text="Console Express"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/txt_busqueda"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.061"
+            app:layout_constraintHorizontal_bias="0.062"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.571" />
+            app:layout_constraintVertical_bias="0.444" />
 
-        <!-- Busqueda  -->
         <EditText
             android:id="@+id/txt_busqueda"
-            android:layout_width="320dp"
-            android:layout_height="44dp"
+            android:layout_width="280dp"
+            android:layout_height="40dp"
             android:layout_alignBottom="@+id/toolbar"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
@@ -59,18 +62,47 @@
             android:hint="Buscar"
             android:inputType="text"
             android:textColorHint="@color/sky"
-            android:textSize="20sp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/toolbar"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.175"
+            app:layout_constraintHorizontal_bias="0.141"
             app:layout_constraintStart_toStartOf="@+id/toolbar"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.818" />
 
+        <TextView
+            android:id="@+id/lblubicacion"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/comfortaa_bold"
+            android:gravity="right"
+            android:text="--- Ubicación ---"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/btnUbicacion"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.619"
+            app:layout_constraintStart_toEndOf="@+id/lblnameapp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.41" />
+
+        <Button
+            android:id="@+id/btnUbicacion"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:foreground="@drawable/relleno_ubicacion"
+            android:foregroundGravity="fill"
+            android:foregroundTint="@color/red"
+            app:background="@drawable/bg_boton"
+            android:backgroundTint="@color/darkblue"
+            app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.562"
+            app:layout_constraintStart_toEndOf="@+id/txt_busqueda"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.818" />
+
         <!-- categorias  -->
-
-
-        <!-- bottom navegation-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/groupcategoria"
             android:layout_width="match_parent"
@@ -86,6 +118,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_boton"
                 android:fontFamily="@font/comfortaa_bold"
+                android:gravity="center"
                 android:text="  Categorias  "
                 android:textColor="@color/white"
                 android:textSize="14sp"
@@ -98,6 +131,7 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/grouplist"
@@ -122,6 +156,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <!-- bottom navegation-->
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavegation"
             android:layout_width="match_parent"
