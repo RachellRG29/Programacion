@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-/* firebase
+//firebase
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -25,7 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
-*/
+
 
 public class RegisterActivity extends AppCompatActivity {
     //FirebaseFirestore mFirestore;
@@ -40,7 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
         cambiarColorBarraEstado(getResources().getColor(R.color.red));
 
        // mFirestore = FirebaseFirestore.getInstance();
-       // mAuth = FirebaseAuth.getInstance();
+        //mAuth = FirebaseAuth.getInstance();
 
         //txt lbl_signup_aActivitySignup a Registrar en caso de no tener cuenta
         TextView lblIngresar = (TextView) findViewById(R.id.lbl_register_aActivityLogin);
@@ -71,7 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 } else {
                     irLogin();
-                    //registerUser(nameUser, emailUser, passUser); firebase
+                   // registerUser(nameUser, emailUser, passUser); //firebase
                 }
             }
         });
@@ -79,8 +79,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     } //onCreate
 
-/* firebase
-    private void registerUser(String nameUser, String emailUser, String passUser) {
+ //firebase
+  /*  private void registerUser(String nameUser, String emailUser, String passUser) {
         mAuth.createUserWithEmailAndPassword(emailUser, passUser).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -129,7 +129,8 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-    } */
+    }
+    */
 
     //Private void
 

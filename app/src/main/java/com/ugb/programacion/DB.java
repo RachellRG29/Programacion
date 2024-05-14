@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-//Cindy corregir
 public class DB extends SQLiteOpenHelper {
     private  static  final String dbname = "db_productos";
     private  static final int v=1;
