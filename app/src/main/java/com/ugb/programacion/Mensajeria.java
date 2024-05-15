@@ -10,7 +10,7 @@ import android.view.WindowManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-//Yarit y karen
+//Yarit y karen hacer mensajeria.
 public class Mensajeria extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     @Override
