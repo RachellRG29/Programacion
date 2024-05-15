@@ -26,7 +26,7 @@ public class DB extends SQLiteOpenHelper {
         //para actualizar la base de datos
     }
 
-    //ADMINISTRAR LOS PRODUCTOS SKINCARE
+    //ADMINISTRAR LOS PRODUCTOS CONSOLES EXPRESS
     public String administrar_productos(String accion, String[] datos){
         try {
             SQLiteDatabase db = getWritableDatabase();

@@ -27,12 +27,11 @@ import org.json.JSONObject;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-//AGREGAR PRODUCTOS TIENDA ONLINE PRODUCTOS PARCIAL II
+//AGREGAR PRODUCTOS DELIVERY CONSOLAS: CONSOLES EXPRESS
 
 public class MainActivity extends AppCompatActivity {
 
     //VARIABLES
-
     //Navegation bar
     BottomNavigationView bottomNavigationView;
     CircleImageView imageCirProducto;

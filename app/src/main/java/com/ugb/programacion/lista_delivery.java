@@ -280,7 +280,7 @@ public class lista_delivery extends AppCompatActivity {
         }
     }
 
-    //obtenet productos skincare
+    //obtenet productos consoles express
     private void obtenerProductos(){
         try{
             dbProductos = new DB(lista_delivery.this, "", null, 1);

@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/imgcontornocons"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="66dp"
+        android:layout_height="66dp"
         android:foreground="@drawable/contorno_consola"
         android:foregroundTint="@color/beige"
         app:layout_constraintBottom_toTopOf="@+id/grouplogin"
@@ -18,7 +18,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.324" />
+        app:layout_constraintVertical_bias="0.206" />
 
     <TextView
         android:id="@+id/lbldelcons"
@@ -27,7 +27,7 @@
         android:text="¡Bienvenidos!"
         android:fontFamily="@font/comfortaa_bold"
         android:textColor="@color/beige"
-        android:textSize="25sp"
+        android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/grouplogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -38,7 +38,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/grouplogin"
         android:layout_width="match_parent"
-        android:layout_height="600dp"
+        android:layout_height="650dp"
         android:background="@drawable/bg_color_login"
         android:backgroundTint="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -81,17 +81,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:text=" NOMBRE"
+                    android:text=" NOMBRE USUARIO"
                     android:fontFamily="@font/comfortaa_bold"
                     android:textColor="@color/white"
                     android:textSize="17sp" />
 
                 <EditText
-                    android:id="@+id/txt_nombreusuario_register"
+                    android:id="@+id/txtUsuarioRegister"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="Usuario"
+                    android:hint="Ingrese un usuario"
                     android:fontFamily="@font/comfortaa_regular"
                     android:textColorHint="@color/beige"
                     android:textColor="@color/white"
@@ -115,11 +115,11 @@
 
 
                 <EditText
-                    android:id="@+id/txt_correo_register"
+                    android:id="@+id/txtCorreoRegister"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="Correo"
+                    android:hint="Ingrese un correo"
                     android:fontFamily="@font/comfortaa_regular"
                     android:inputType="textWebEmailAddress"
                     android:textColorHint="@color/beige"
@@ -143,11 +143,11 @@
 
 
                 <EditText
-                    android:id="@+id/txt_contrasena_register"
+                    android:id="@+id/txtContrasenaRegister"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="Contraseña"
+                    android:hint="Ingrese una contraseña"
                     android:fontFamily="@font/comfortaa_regular"
                     android:inputType="textPassword"
                     android:textColorHint="@color/beige"
