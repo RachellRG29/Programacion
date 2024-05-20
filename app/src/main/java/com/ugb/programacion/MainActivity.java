@@ -1,5 +1,6 @@
 package com.ugb.programacion;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -83,23 +85,27 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottomNavegation);
         bottomNavigationView.setSelectedItemId(R.id.navAgregar);
 
-        bottomNavigationView.setOnItemReselectedListener(item -> {
-            switch (item.getItemId()){
-                case R.id.navPrincipal: //Lista delivery: ConsoleExpress
-                    //startActivity(new Intent(getApplicationContext(), lista_delivery.class));
-                    irVista();
-                    finish();
-                    return;
-                case R.id.navAgregar: //Agregar Consolas MainActivity:Agregar
-                    return;
-                case R.id.navMensajeria: //Mensajeria
-                    startActivity(new Intent(getApplicationContext(), Mensajeria.class));
-                    finish();
-                    return;
-            }
-            return;
-        }); //fin navegation
+        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.navPrincipal:
+                        // Acciones para Principal
+                        irVista();
+                        finish();
+                        return true;
 
+                    case R.id.navAgregar:
+                        return true;
+
+                    case R.id.navMensajeria:
+                        startActivity(new Intent(getApplicationContext(), Mensajeria.class));
+                        finish();
+                        return true;
+                }
+                return false;
+            }
+        }); // fin navigation
 
 
         //boton guardar producto

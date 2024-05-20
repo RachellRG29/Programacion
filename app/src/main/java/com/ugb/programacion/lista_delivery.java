@@ -62,23 +62,29 @@ public class lista_delivery extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottomNavegation);
         bottomNavigationView.setSelectedItemId(R.id.navPrincipal);
 
-        bottomNavigationView.setOnItemReselectedListener(item -> {
-            switch (item.getItemId()){
-                case R.id.navPrincipal: //Lista delivery: Console express
+        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.navPrincipal:
+                        // Acciones para Principal
+                        return true;
 
-                    return;
-                case R.id.navAgregar: //Agregar Console express
-                    //startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    parametros.putString("accion", "nuevo");
-                    irAgregar(parametros);
-                    finish();
-                    return;
-                case R.id.navMensajeria: //Mensajeria
-                    startActivity(new Intent(getApplicationContext(), Mensajeria.class));
-                    finish();
-                    return;
+                    case R.id.navAgregar:
+                        Bundle parametros = new Bundle();
+                        parametros.putString("accion", "nuevo");
+                        irAgregar(parametros);
+                        return true;
+
+                    case R.id.navMensajeria:
+                        startActivity(new Intent(getApplicationContext(), Mensajeria.class));
+                        finish();
+                        return true;
+                }
+                return false;
             }
-        }); //fin navegation
+        }); // fin navigation
+
         try{
             di = new detectarInternet(getApplicationContext());
             if(di.hayConexionInternet()){ //online
