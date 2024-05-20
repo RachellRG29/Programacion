@@ -43,7 +43,6 @@ public class Mensajeria extends AppCompatActivity {
                         return true;
 
                     case R.id.navMensajeria:
-
                         return true;
                 }
                 return false;

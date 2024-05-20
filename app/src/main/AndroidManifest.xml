@@ -36,6 +36,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".Gps"
+            android:exported="false" />
+        <activity
             android:name=".Usuarios"
             android:exported="false" />
         <activity
