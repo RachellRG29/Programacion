@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +37,7 @@ public class lista_delivery extends AppCompatActivity {
     //VARIABLES
     BottomNavigationView bottomNavigationView;
     Bundle parametros = new Bundle();
+    Button btnGps;
     ListView lts, ltsconsolas;
     Cursor cProductos;
     DB dbProductos;
@@ -62,23 +64,29 @@ public class lista_delivery extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottomNavegation);
         bottomNavigationView.setSelectedItemId(R.id.navPrincipal);
 
-        bottomNavigationView.setOnItemReselectedListener(item -> {
-            switch (item.getItemId()){
-                case R.id.navPrincipal: //Lista delivery: Console express
+        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.navPrincipal:
+                        // Acciones para Principal
+                        return true;
 
-                    return;
-                case R.id.navAgregar: //Agregar Console express
-                    //startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    parametros.putString("accion", "nuevo");
-                    irAgregar(parametros);
-                    finish();
-                    return;
-                case R.id.navMensajeria: //Mensajeria
-                    startActivity(new Intent(getApplicationContext(), Mensajeria.class));
-                    finish();
-                    return;
+                    case R.id.navAgregar:
+                        Bundle parametros = new Bundle();
+                        parametros.putString("accion", "nuevo");
+                        irAgregar(parametros);
+                        return true;
+
+                    case R.id.navMensajeria:
+                        startActivity(new Intent(getApplicationContext(), Mensajeria.class));
+                        finish();
+                        return true;
+                }
+                return false;
             }
-        }); //fin navegation
+        }); // fin navigation
+
         try{
             di = new detectarInternet(getApplicationContext());
             if(di.hayConexionInternet()){ //online
@@ -91,6 +99,16 @@ public class lista_delivery extends AppCompatActivity {
             mostrarMsg("Error al detectar si hay conexion "+ e.getMessage());
         }
         buscarProductos();
+
+        //Boton GPS
+        btnGps = findViewById(R.id.btnUbicacion);
+        btnGps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                irGps();
+            }
+        });
+
 
     } //fin ONCREATE
 
@@ -378,11 +396,11 @@ public class lista_delivery extends AppCompatActivity {
 
     }
 
-    /*private  void irConsolas(){
-        Intent abrirVentana = new Intent(getApplicationContext(), adaptador_consolas.class);
+    private void irGps(){ //ir a actividad GPS
+        Intent abrirVentana = new Intent(getApplicationContext(), Gps.class);
         startActivity(abrirVentana);
 
-    }*/
+    }
 
 
     //Metodo para cambiar el color de la barra de estado

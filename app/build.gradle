@@ -60,6 +60,5 @@ dependencies {
     //pick image: activity agregar, para seleccionar camara y galeria
     implementation 'com.github.dhaval2404:imagepicker:2.1'
 
-
     
 }

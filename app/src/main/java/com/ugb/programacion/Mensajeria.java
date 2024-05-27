@@ -1,10 +1,12 @@
 package com.ugb.programacion;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -21,23 +23,31 @@ public class Mensajeria extends AppCompatActivity {
         //cambiar color barra estado
         cambiarColorBarraEstado(getResources().getColor(R.color.darkblue));
 
+        //BottomNavegation
         bottomNavigationView = findViewById(R.id.bottomNavegation);
         bottomNavigationView.setSelectedItemId(R.id.navMensajeria);
 
-        bottomNavigationView.setOnItemReselectedListener(item -> {
-            switch (item.getItemId()){
-                case R.id.navPrincipal: //Lista tulip
-                    startActivity(new Intent(getApplicationContext(), lista_delivery.class));
-                    finish();
-                    return;
-                case R.id.navAgregar: //Agregar tulip
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    finish();
-                    return;
-                case R.id.navMensajeria: //Mensajeria
-                    return;
+        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.navPrincipal:
+                        // Acciones para Principal
+                        startActivity(new Intent(getApplicationContext(), lista_delivery.class));
+                        finish();
+                        return true;
+
+                    case R.id.navAgregar:
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        finish();
+                        return true;
+
+                    case R.id.navMensajeria:
+                        return true;
+                }
+                return false;
             }
-        }); //fin navegation
+        }); // fin navigation
 
 
 
