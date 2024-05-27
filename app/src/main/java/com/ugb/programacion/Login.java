@@ -61,6 +61,7 @@ public class Login extends AppCompatActivity {
                         iniciarSesion(usuario, contrasena);
                         irLista();
                     } else {
+                        //en caso de fallar, si usuario o la contra es erronea
                         Toast.makeText(Login.this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
                     }
 
@@ -80,7 +81,7 @@ public class Login extends AppCompatActivity {
         return isValid;
     }
 
-    // Método para abrir la actividad de registro
+    // Método para abrir la actividad de registrar
     public void openRegistrarlbl(){
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
@@ -103,6 +104,7 @@ public class Login extends AppCompatActivity {
     // Método para iniciar sesión
     private void iniciarSesion(String usuario, String contrasena) {
         if (NetworkUtil.isNetworkAvailable(this)) {
+            //hay conexion a interner, guardar con firebase
             signInFirebase(usuario, contrasena);
         } else {
             // No hay conexión a internet, guardar localmente
@@ -117,14 +119,14 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Inicio de sesión con Firebase exitoso
+                            // Inicio de sesión con Firebase exitoso!!!
                             FirebaseUser user = mAuth.getCurrentUser();
                             mostrarMsg("Inicio de sesión con Firebase exitoso");
                             irLista();
-                        } else {
+                        } /*else {
                             // Error al iniciar sesión con Firebase, mostrar mensaje de error
                            // mostrarMsg("Error en Firebase: " + task.getException().getMessage());
-                        }
+                        }*/
                     }
                 });
     }
@@ -139,7 +141,8 @@ public class Login extends AppCompatActivity {
         Intent abrirVentana = new Intent(getApplicationContext(), lista_delivery.class);
         startActivity(abrirVentana);
     }
-}
+
+} //Fin login :3
 
 
 
