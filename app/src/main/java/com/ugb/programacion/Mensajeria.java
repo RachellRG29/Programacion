@@ -47,7 +47,7 @@ public class Mensajeria extends AppCompatActivity {
 
 
 
-
+//Usar LA PALETA DE COLOR SUGERIDA
     //CAMBIAR EL COLOR DE LA BARRA DE ESTADO
     private void cambiarColorBarraEstado(int color) {
         // Verificar si la versión del SDK es Lollipop o superior
