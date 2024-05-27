@@ -9,7 +9,7 @@
     android:background="@color/blueblue"
     tools:context=".MainActivity">
 
-    <!-- Agregar productos Tulip TOOLBAR-->
+    <!-- Agregar productos ConsoleXpress toolbar-->
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -87,7 +87,7 @@
         <EditText
             android:id="@+id/txtCodigo"
             android:layout_width="200dp"
-            android:layout_height="46dp"
+            android:layout_height="50dp"
             android:backgroundTint="@color/blue"
             android:drawableTint="@color/blueblue"
             android:fontFamily="@font/comfortaa_regular"
@@ -217,6 +217,10 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:foreground="@drawable/circular_background"
         android:foregroundTint="@color/sky"
         android:rotation="0"
