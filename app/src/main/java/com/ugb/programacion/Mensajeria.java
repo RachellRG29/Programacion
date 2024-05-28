@@ -20,6 +20,7 @@ public class Mensajeria extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mensajeria);
 
+
         //cambiar color barra estado
         cambiarColorBarraEstado(getResources().getColor(R.color.darkblue));
 

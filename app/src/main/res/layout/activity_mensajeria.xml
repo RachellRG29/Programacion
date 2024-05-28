@@ -1,51 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/sky"
     tools:context=".Mensajeria">
 
-    <!-- Mensajeria -->
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavegation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/darkblue"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:background="@color/blueblue"
+        app:itemIconSize="30dp"
+        app:itemIconTint="@drawable/item_selector"
+        app:itemRippleColor="@android:color/transparent"
+        app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/constraintLayout"
-        app:layout_constraintVertical_bias="0.0">
+        app:menu="@menu/navegation" />
 
-    </androidx.appcompat.widget.Toolbar>
+    <ImageView
+        android:id="@+id/imgAtras"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/atras" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/crvFotoAmigo"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="60dp"
+        app:cardCornerRadius="150dp">
+
+        <ImageView
+            android:id="@+id/imgFotoAmigo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_launcher_foreground" />
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+    </androidx.cardview.widget.CardView>
+    <TextView
+        android:id="@+id/lblToChat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="125dp"
+        android:text="amigo..."/>
+
+    <ListView
+        android:id="@+id/ltsChats"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_above="@+id/bottomNavegation"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="-3dp"
+        android:background="@drawable/fondo"
+        android:stackFromBottom="true" />
+
+    <EditText
+        android:id="@+id/txtMsg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottomNavegation"
+        android:background="@color/white"
+        android:fontFamily="@font/comfortaa_regular"
+        android:hint="Escribe un mensaje..."
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btnEnviarMsg"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:layout_above="@+id/bottomNavegation"
+        android:layout_alignTop="@+id/txtMsg"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="356dp"
+        android:layout_marginTop="0dp"
+        android:background="#A7BBFF"
+        app:icon="@drawable/enviar" />
 
 
-        <!-- bottom navegation-->
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavegation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/blueblue"
-            app:itemIconSize="30dp"
-            app:itemIconTint="@drawable/item_selector"
-            app:itemRippleColor="@android:color/transparent"
-            app:labelVisibilityMode="unlabeled"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/navegation" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
