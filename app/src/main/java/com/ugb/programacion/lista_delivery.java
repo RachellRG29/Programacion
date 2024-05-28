@@ -1,6 +1,5 @@
 package com.ugb.programacion;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -38,7 +37,6 @@ public class lista_delivery extends AppCompatActivity {
     FloatingActionButton btnIrRegistrar;
     TextView lblusuariotexto;
     Bundle parametros = new Bundle();
-    Button btnGps;
     ListView lts, ltsconsolas;
     Cursor cProductos;
     DB dbProductos;
@@ -64,7 +62,7 @@ public class lista_delivery extends AppCompatActivity {
         //Para que el usuario logeado, vea su usuario
         lblusuariotexto= findViewById(R.id.lblUsuarioLogeado);
 
-        // Obtener el nombre del usuario desde el Intent
+        // Obtiene el nombre desde el login
         String usuarioLogeado = getIntent().getStringExtra("usuario_logeado");
         if (usuarioLogeado != null) {
             lblusuariotexto.setText(usuarioLogeado);
@@ -73,7 +71,7 @@ public class lista_delivery extends AppCompatActivity {
         //Boton agregar
         btnIrRegistrar = findViewById(R.id.btnAgregarProducto);
 
-        // Obtiene el usuario y si es admin el boton se hara visible, de lo contrario no
+        // Obtiene el usuario y si es admin el boton se hara visible, de lo contrario no :3
         boolean isAdmin = getIntent().getBooleanExtra("is_admin", false);
         if (isAdmin) {
             btnIrRegistrar.setVisibility(View.VISIBLE);
@@ -98,7 +96,7 @@ public class lista_delivery extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.navPrincipal:
-                        // Acciones para Principal
+                        //Lista ConsoleXpress
                         return true;
 
                     case R.id.navGps:
@@ -246,6 +244,13 @@ public class lista_delivery extends AppCompatActivity {
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.mimenu, menu);
+        boolean isAdmin = getIntent().getBooleanExtra("is_admin", false);
+
+        if (!isAdmin) {
+            menu.findItem(R.id.mnxAgregar).setVisible(false);
+            menu.findItem(R.id.mnxModificar).setVisible(false);
+            menu.findItem(R.id.mnxEliminar).setVisible(false);
+        }
 
         try {
             AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
@@ -259,14 +264,21 @@ public class lista_delivery extends AppCompatActivity {
     //Agregar, modificar y eliminar
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
+        boolean isAdmin = getIntent().getBooleanExtra("is_admin", false);
+
+        if (!isAdmin) {
+            mostrarMsg("No tienes permiso para realizar esta acción.");
+            return super.onContextItemSelected(item);
+        }
+
         try {
-            switch (item.getItemId()){
+            switch (item.getItemId()) {
                 case R.id.mnxAgregar:
                     parametros.putString("accion", "nuevo");
                     irAgregar(parametros);
                     break;
                 case R.id.mnxModificar:
-                    parametros.putString("accion","modificar");
+                    parametros.putString("accion", "modificar");
                     parametros.putString("productos", datosJSON.getJSONObject(posicion).toString());
                     irAgregar(parametros);
                     break;
@@ -275,11 +287,10 @@ public class lista_delivery extends AppCompatActivity {
                     break;
             }
             return true;
-        }catch (Exception e){
-            mostrarMsg("Error en menu: "+ e.getMessage());
+        } catch (Exception e) {
+            mostrarMsg("Error en menu: " + e.getMessage());
             return super.onContextItemSelected(item);
         }
-
     }
 
 
@@ -414,8 +425,6 @@ public class lista_delivery extends AppCompatActivity {
         startActivity(abrirVentana);
 
     }
-
-
 
 
     //Metodo para cambiar el color de la barra de estado

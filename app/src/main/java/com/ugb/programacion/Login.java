@@ -27,7 +27,6 @@ public class Login extends AppCompatActivity {
     private EditText userlogin, passwordlogin;
     private DB_register db_register;
     private FirebaseAuth mAuth;
-
     private static final String ADMIN_USER = "Admin1";
     private static final String ADMIN_PASSWORD = "123456";
     private static final String ADMIN_EMAIL = "admin01@ugb.edu.sv";
