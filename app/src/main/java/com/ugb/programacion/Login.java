@@ -28,6 +28,10 @@ public class Login extends AppCompatActivity {
     private DB_register db_register;
     private FirebaseAuth mAuth;
 
+    private static final String ADMIN_USER = "Admin1";
+    private static final String ADMIN_PASSWORD = "123456";
+    private static final String ADMIN_EMAIL = "admin01@ugb.edu.sv";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,11 +59,12 @@ public class Login extends AppCompatActivity {
                 } else {
                     String usuario = userlogin.getText().toString();
                     String contrasena = passwordlogin.getText().toString();
+                    boolean isAdmin = usuario.equals(ADMIN_USER) && contrasena.equals(ADMIN_PASSWORD);
                     // Validar credenciales localmente
                     if(validarCredenciales(usuario, contrasena)){
                         // Credenciales válidas localmente, intentar iniciar sesión
                         iniciarSesion(usuario, contrasena);
-                        irLista();
+                        irLista(usuario, isAdmin);
                     } else {
                         //en caso de fallar, si usuario o la contra es erronea
                         Toast.makeText(Login.this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
@@ -122,7 +127,8 @@ public class Login extends AppCompatActivity {
                             // Inicio de sesión con Firebase exitoso!!!
                             FirebaseUser user = mAuth.getCurrentUser();
                             mostrarMsg("Inicio de sesión con Firebase exitoso");
-                            irLista();
+                            boolean isAdmin = email.equals(ADMIN_EMAIL);
+                            irLista(email, isAdmin);
                         } /*else {
                             // Error al iniciar sesión con Firebase, mostrar mensaje de error
                            // mostrarMsg("Error en Firebase: " + task.getException().getMessage());
@@ -137,10 +143,18 @@ public class Login extends AppCompatActivity {
     }
 
     // Método para abrir la actividad de la lista
-    private void irLista(){
+
+    private void irLista(String usuario, boolean isAdmin){
         Intent abrirVentana = new Intent(getApplicationContext(), lista_delivery.class);
+        abrirVentana.putExtra("usuario_logeado", usuario);
+        abrirVentana.putExtra("is_admin", isAdmin);
         startActivity(abrirVentana);
     }
+
+   /* private void irLista(){
+        Intent abrirVentana = new Intent(getApplicationContext(), lista_delivery.class);
+        startActivity(abrirVentana);
+    }*/
 
 } //Fin login :3
 

@@ -17,14 +17,14 @@ public class chatsArrayAdapter {
     private List<chatMessage> chatMessageList = new ArrayList<>();
     private TextView chatText;
 
-    public chatsArrayAdapter(@NonNull Context context, int resource) {
+   /* public chatsArrayAdapter(@NonNull Context context, int resource) {
         super(context, resource);
         this.context = context;
-    }
-    public void add(chatMessage object){
+    }*/
+   /* public void add(chatMessage object){
         chatMessageList.add(object);
         super.add(object);
-    }
+    }*/
     public int getCount(){
         return chatMessageList.size();
     }
@@ -37,15 +37,15 @@ public class chatsArrayAdapter {
         try {
             chatMessage objChatMessage = getItem(posicion);
 
-            LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            if (objChatMessage.posicion) {
+           // LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+           /* if (objChatMessage.posicion) {
                 fila = layoutInflater.inflate(R.layout.izquierda, viewGroup, false);
                 chatText = fila.findViewById(R.id.lblmsgizq);
             } else {
                 fila = layoutInflater.inflate(R.layout.derecha, viewGroup, false);
                 chatText = fila.findViewById(R.id.lblmsgder);
             }
-            chatText.setText(objChatMessage.message);
+            chatText.setText(objChatMessage.message);*/
 
         }catch (Exception ex){
             mostrarMsgToast("Error al mostrar el msg: "+ ex.getMessage());

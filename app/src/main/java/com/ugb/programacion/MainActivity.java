@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     CircleImageView imageCirProducto;
     FloatingActionButton btnChangeImage;
-    String accion="nuevo", id="", imgproductourl="", rev="", idProducto="";
+    String accion="nuevo", id="", imgproductourl="", imgproductoFirebaseurrl="", rev="", idProducto="";
     Button btnGuardar;
     TextView tempVal;
     utilidades utls;
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
         //BottomNavegation
         bottomNavigationView = findViewById(R.id.bottomNavegation);
-        bottomNavigationView.setSelectedItemId(R.id.navAgregar);
+        bottomNavigationView.setSelectedItemId(R.id.navGps);
 
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                         finish();
                         return true;
 
-                    case R.id.navAgregar:
+                    case R.id.navGps:
                         return true;
 
                     case R.id.navMensajeria:
@@ -208,8 +208,6 @@ public class MainActivity extends AppCompatActivity {
         mostrarDatosProductos(); //mostrar los datos del producto
 
 
-
-
     } //fin ONCREATE :3
 
     //AGREGAR PRIVATE VOIDS
@@ -234,8 +232,6 @@ public class MainActivity extends AppCompatActivity {
             mostrarMsg("Error al mostrar la imagen: " + e.getMessage());
         }
     }
-
-
 
 
     //MOSTRAR DATOS PRODUCTOS DELIVERY CONSOLAS

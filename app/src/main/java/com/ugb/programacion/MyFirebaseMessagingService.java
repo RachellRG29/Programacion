@@ -1,5 +1,7 @@
 package com.ugb.programacion;
 
+import static androidx.core.content.ContextCompat.getSystemService;
+
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -23,13 +25,13 @@ public class MyFirebaseMessagingService {
     public static final String DISPLAY_MESSAGE_ACTION = "enviarMsg";
     NotificationManager notificationManager;
 
-    @Override
+  /*  @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
-        crearNotificacionPush(remoteMessage);
-        sendNewMsgBroadcast(remoteMessage);
-    }
-    private void crearNotificacionPush(RemoteMessage remoteMessage){
-        Intent intent = new Intent( this, Mensajeria.class);
+        //crearNotificacionPush(remoteMessage);
+        //sendNewMsgBroadcast(remoteMessage);
+    }*/
+   /* private void crearNotificacionPush(RemoteMessage remoteMessage){
+        Intent intent = new Intent(MyFirebaseInstanceIDService.this, Mensajeria.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("msg", remoteMessage.getData().get("msg"));
         intent.putExtra("to", remoteMessage.getData().get("para"));
@@ -74,4 +76,5 @@ public class MyFirebaseMessagingService {
         intent.putExtra("user", remoteMessage.getData().get("user"));
         LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
     }
+    */
 }

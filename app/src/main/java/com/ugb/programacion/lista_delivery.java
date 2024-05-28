@@ -31,11 +31,12 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-//Cindy
 public class lista_delivery extends AppCompatActivity {
 
     //VARIABLES
     BottomNavigationView bottomNavigationView;
+    FloatingActionButton btnIrRegistrar;
+    TextView lblusuariotexto;
     Bundle parametros = new Bundle();
     Button btnGps;
     ListView lts, ltsconsolas;
@@ -60,6 +61,34 @@ public class lista_delivery extends AppCompatActivity {
 
         dbProductos = new DB(lista_delivery.this,"",null,1);
 
+        //Para que el usuario logeado, vea su usuario
+        lblusuariotexto= findViewById(R.id.lblUsuarioLogeado);
+
+        // Obtener el nombre del usuario desde el Intent
+        String usuarioLogeado = getIntent().getStringExtra("usuario_logeado");
+        if (usuarioLogeado != null) {
+            lblusuariotexto.setText(usuarioLogeado);
+        }
+
+        //Boton agregar
+        btnIrRegistrar = findViewById(R.id.btnAgregarProducto);
+
+        // Obtiene el usuario y si es admin el boton se hara visible, de lo contrario no
+        boolean isAdmin = getIntent().getBooleanExtra("is_admin", false);
+        if (isAdmin) {
+            btnIrRegistrar.setVisibility(View.VISIBLE);
+        } else {
+            btnIrRegistrar.setVisibility(View.GONE);
+        }
+        btnIrRegistrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle parametros = new Bundle();
+                parametros.putString("accion", "nuevo");
+                irAgregar(parametros);
+            }
+        });
+
         //BottomNavegation
         bottomNavigationView = findViewById(R.id.bottomNavegation);
         bottomNavigationView.setSelectedItemId(R.id.navPrincipal);
@@ -72,10 +101,9 @@ public class lista_delivery extends AppCompatActivity {
                         // Acciones para Principal
                         return true;
 
-                    case R.id.navAgregar:
-                        Bundle parametros = new Bundle();
-                        parametros.putString("accion", "nuevo");
-                        irAgregar(parametros);
+                    case R.id.navGps:
+                        startActivity(new Intent(getApplicationContext(), Gps.class));
+                        finish();
                         return true;
 
                     case R.id.navMensajeria:
@@ -99,15 +127,6 @@ public class lista_delivery extends AppCompatActivity {
             mostrarMsg("Error al detectar si hay conexion "+ e.getMessage());
         }
         buscarProductos();
-
-        //Boton GPS
-        btnGps = findViewById(R.id.btnUbicacion);
-        btnGps.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                irGps();
-            }
-        });
 
 
     } //fin ONCREATE
@@ -396,11 +415,7 @@ public class lista_delivery extends AppCompatActivity {
 
     }
 
-    private void irGps(){ //ir a actividad GPS
-        Intent abrirVentana = new Intent(getApplicationContext(), Gps.class);
-        startActivity(abrirVentana);
 
-    }
 
 
     //Metodo para cambiar el color de la barra de estado
@@ -414,4 +429,4 @@ public class lista_delivery extends AppCompatActivity {
     } //fin cambiar colorbarraestado
 
 
-} //fin lista_productos cindy
+} //fin lista_productos

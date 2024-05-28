@@ -47,13 +47,13 @@
         <!-- Busqueda  -->
         <EditText
             android:id="@+id/txt_busqueda"
-            android:layout_width="280dp"
+            android:layout_width="360dp"
             android:layout_height="40dp"
             android:layout_alignBottom="@+id/toolbar"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:background="@drawable/bg_boton2"
-            android:drawableStart="@drawable/lupa"
+            android:drawableStart="@drawable/icon_lupa"
             android:drawableTint="@color/sky"
             android:fontFamily="@font/comfortaa_regular"
             android:hint="Buscar"
@@ -62,43 +62,41 @@
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/toolbar"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.132"
+            app:layout_constraintHorizontal_bias="0.484"
             app:layout_constraintStart_toStartOf="@+id/toolbar"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.712" />
+            app:layout_constraintVertical_bias="0.8" />
 
-        <!-- categorias  -->
         <TextView
-            android:id="@+id/lblubicacion"
-            android:layout_width="180dp"
+            android:id="@+id/lblUsuarioLogeado"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/comfortaa_bold"
             android:gravity="right"
-            android:text="--- Ubicación ---"
+            android:text="Usuario"
             android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/btnUbicacion"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.709"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toStartOf="@+id/btnUser"
+            app:layout_constraintHorizontal_bias="0.738"
             app:layout_constraintStart_toEndOf="@+id/lblnameapp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.516" />
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btnUbicacion"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+        <ImageView
+            android:id="@+id/btnUser"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:backgroundTint="@color/darkblue"
-            android:foreground="@drawable/relleno_ubicacion"
+            android:foreground="@drawable/icon_usuario"
             android:foregroundGravity="fill"
             android:foregroundTint="@color/red"
             app:background="@drawable/bg_boton"
-            app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+            app:layout_constraintBottom_toTopOf="@+id/txt_busqueda"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.724"
-            app:layout_constraintStart_toEndOf="@+id/txt_busqueda"
+            app:layout_constraintHorizontal_bias="0.914"
+            app:layout_constraintStart_toEndOf="@+id/lblnameapp"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.712" />
+            app:layout_constraintVertical_bias="0.571" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/groupcategoria"
@@ -109,6 +107,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
+            <!-- categorias  -->
             <TextView
                 android:id="@+id/lblcategoria"
                 android:layout_width="wrap_content"
@@ -152,6 +151,20 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0" />
 
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnAgregarProducto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:foreground="@drawable/boton_agregar"
+                android:foregroundTint="@color/redmaroon"
+                android:backgroundTint="@color/white"
+                android:layout_marginBottom="-430dp"
+                android:layout_marginEnd="14dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="gone"
+                app:layout_constraintTop_toTopOf="@+id/ltsProductos" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -162,7 +175,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="565dp"
             android:background="@color/blueblue"
-            app:itemIconSize="30dp"
+            app:itemIconSize="32dp"
             app:itemIconTint="@drawable/item_selector"
             app:itemRippleColor="@android:color/transparent"
             app:labelVisibilityMode="unlabeled"

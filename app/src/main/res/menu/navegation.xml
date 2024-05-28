@@ -7,9 +7,9 @@
         android:title="Principal"
         android:icon="@drawable/consola_principal"/>
     <item
-        android:id="@+id/navAgregar"
-        android:title="Agregar"
-        android:icon="@drawable/boton_agregar"/>
+        android:id="@+id/navGps"
+        android:title="Gps"
+        android:icon="@drawable/icon_relleno_ubicacion"/>
     <item
         android:id="@+id/navMensajeria"
         android:title="Mensajeria"

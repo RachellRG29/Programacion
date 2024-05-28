@@ -1,5 +1,5 @@
 package com.ugb.programacion;
-
+/*
 public class MyReceiverSMS {
     final SmsManager sms = SmsManager.
             getDefault();
@@ -35,4 +35,4 @@ public class MyReceiverSMS {
         }
     }
 }
-
+*/

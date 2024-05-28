@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/darkblue"
     tools:context=".Mensajeria">
 
 
@@ -25,14 +26,15 @@
 
     <ImageView
         android:id="@+id/imgAtras"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="6dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/atras" />
+        android:background="@drawable/icon_atras"
+        android:backgroundTint="@color/white" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/crvFotoAmigo"
@@ -54,8 +56,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:layout_marginLeft="125dp"
-        android:text="amigo..."/>
+        android:layout_marginStart="125dp"
+        android:fontFamily="@font/comfortaa_regular"
+        android:textSize="16sp"
+        android:text="amigo..."
+        android:textColor="@color/beige"/>
 
     <ListView
         android:id="@+id/ltsChats"
@@ -64,21 +69,37 @@
         android:layout_above="@+id/bottomNavegation"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="0dp"
         android:layout_marginTop="60dp"
-        android:layout_marginBottom="-3dp"
+        android:layout_marginBottom="0dp"
         android:background="@drawable/fondo"
         android:stackFromBottom="true" />
 
     <EditText
         android:id="@+id/txtMsg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="36dp"
         android:layout_above="@+id/bottomNavegation"
         android:background="@color/white"
         android:fontFamily="@font/comfortaa_regular"
         android:hint="Escribe un mensaje..."
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
         android:textSize="18sp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnAgregarUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txtMsg"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/white"
+        android:foreground="@drawable/icon_usuario_add"
+        android:foregroundTint="#4A65BF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/btnEnviarMsg"
@@ -90,8 +111,10 @@
         android:layout_alignParentEnd="true"
         android:layout_marginStart="356dp"
         android:layout_marginTop="0dp"
-        android:background="#A7BBFF"
-        app:icon="@drawable/enviar" />
+        android:background="@color/redmaroon"
+        android:foreground="@drawable/icon_enviar"
+        android:foregroundTint="@color/beige"
+         />
 
 
 

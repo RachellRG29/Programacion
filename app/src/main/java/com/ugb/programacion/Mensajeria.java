@@ -38,8 +38,8 @@ public class Mensajeria extends AppCompatActivity {
                         finish();
                         return true;
 
-                    case R.id.navAgregar:
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    case R.id.navGps:
+                        startActivity(new Intent(getApplicationContext(), Gps.class));
                         finish();
                         return true;
 
