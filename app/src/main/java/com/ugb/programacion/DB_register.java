@@ -33,7 +33,7 @@ public class DB_register extends SQLiteOpenHelper{
             if (accion.equals("nuevo")){
                 db_register.execSQL("INSERT INTO register(idRegister,usuario,correo,contrasena) VALUES('"+ datos[0] +"', '"+ datos[1] +"', '"+ datos[2] +"', '"+ datos[3] +"' )");
             } else if (accion.equals("editar")) {
-                db_register.execSQL("UPDATE register SET usuario='"+ datos[1] +"',correo='"+ datos[2] +"',contrasena='"+ datos[3] + "' WHERE idRegister='"+ datos[0] +"'");
+                db_register.execSQL("UPDATE register SET usuario='"+ datos[1] +"',correo='"+ datos[2] +"',contrasena='"+ datos[3] + "'  WHERE idRegister='"+ datos[0] +"'");
             } else if (accion.equals("eliminar")) {
                 db_register.execSQL("DELETE FROM register WHERE idRegister='"+ datos[2] +"'");
             }

@@ -141,18 +141,29 @@
                     android:inputType="text"
                     android:textSize="17sp" />
 
-
-                <EditText
-                    android:id="@+id/txtContrasenaRegister"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/password_text_input_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="Ingrese una contraseña"
-                    android:fontFamily="@font/comfortaa_regular"
-                    android:inputType="textPassword"
                     android:textColorHint="@color/beige"
                     android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:hint="Ingrese una contraseña"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="@color/beige"
+                    app:boxStrokeColor="@color/black">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtContrasenaRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:fontFamily="@font/comfortaa_regular"
+                        android:textColorHint="@color/beige"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        app:passwordToggleEnabled="true" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <Space
                     android:layout_width="match_parent"
