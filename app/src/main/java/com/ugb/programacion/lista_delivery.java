@@ -105,7 +105,7 @@ public class lista_delivery extends AppCompatActivity {
                         return true;
 
                     case R.id.navMensajeria:
-                        startActivity(new Intent(getApplicationContext(), Mensajeria.class));
+                        startActivity(new Intent(getApplicationContext(), lista_usuarios.class));
                         finish();
                         return true;
                 }

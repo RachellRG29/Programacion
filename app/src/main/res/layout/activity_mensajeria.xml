@@ -7,23 +7,7 @@
     android:background="@color/darkblue"
     tools:context=".Mensajeria">
 
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavegation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:background="@color/blueblue"
-        app:itemIconSize="30dp"
-        app:itemIconTint="@drawable/item_selector"
-        app:itemRippleColor="@android:color/transparent"
-        app:labelVisibilityMode="unlabeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/navegation" />
-
+    <!-- CHATS vista de los chats  -->
     <ImageView
         android:id="@+id/imgAtras"
         android:layout_width="32dp"
@@ -36,37 +20,40 @@
         android:background="@drawable/icon_atras"
         android:backgroundTint="@color/white" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/crvFotoAmigo"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginLeft="60dp"
-        app:cardCornerRadius="150dp">
 
-        <ImageView
-            android:id="@+id/imgFotoAmigo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_launcher_foreground" />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgFotoAmigo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ltsChats"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="top|center"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="-114dp"
+        android:layout_marginBottom="-56dp"
+        android:layout_toStartOf="@+id/lblToChat"
+        android:layout_toEndOf="@+id/imgAtras"
+        android:background="@drawable/icon_user"
+        android:backgroundTint="@color/beige" />
 
 
-    </androidx.cardview.widget.CardView>
+
     <TextView
         android:id="@+id/lblToChat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="125dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginStart="130dp"
         android:fontFamily="@font/comfortaa_regular"
         android:textSize="16sp"
-        android:text="amigo..."
+        android:text="Usuario..."
         android:textColor="@color/beige"/>
 
     <ListView
         android:id="@+id/ltsChats"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottomNavegation"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="0dp"
@@ -79,33 +66,19 @@
         android:id="@+id/txtMsg"
         android:layout_width="match_parent"
         android:layout_height="36dp"
-        android:layout_above="@+id/bottomNavegation"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
         android:background="@color/white"
         android:fontFamily="@font/comfortaa_regular"
         android:hint="Escribe un mensaje..."
-        android:textColorHint="@color/black"
         android:textColor="@color/black"
+        android:textColorHint="@color/black"
         android:textSize="18sp" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnAgregarUsuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/txtMsg"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:backgroundTint="@color/white"
-        android:foreground="@drawable/icon_usuario_add"
-        android:foregroundTint="#4A65BF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/btnEnviarMsg"
         android:layout_width="60dp"
         android:layout_height="40dp"
-        android:layout_above="@+id/bottomNavegation"
         android:layout_alignTop="@+id/txtMsg"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"

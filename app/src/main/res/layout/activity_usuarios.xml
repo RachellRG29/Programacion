@@ -4,6 +4,143 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo"
     tools:context=".Usuarios">
+
+    <!-- Agregar usuarios -->
+
+    <ImageView
+        android:id="@+id/imgAtras"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/icon_atras"
+        android:backgroundTint="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/txtnombre"
+        app:layout_constraintEnd_toStartOf="@+id/imgAmigo"
+        app:layout_constraintHorizontal_bias="0.14"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.163" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgAmigo"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:background="@android:color/transparent"
+        android:foreground="@drawable/icon_galeria"
+        android:foregroundGravity="fill"
+        android:foregroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.059" />
+
+    <EditText
+        android:id="@+id/txtnombre"
+        android:layout_width="366dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imgAmigo"
+        android:fontFamily="@font/comfortaa_regular"
+        android:hint="Nombre"
+        android:inputType="textPersonName"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgAmigo"
+        app:layout_constraintVertical_bias="0.079" />
+
+    <EditText
+        android:id="@+id/txtdireccion"
+        android:layout_width="366dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtnombre"
+        android:fontFamily="@font/comfortaa_regular"
+        android:hint="Direccion"
+        android:inputType="textMultiLine"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtnombre"
+        app:layout_constraintVertical_bias="0.057" />
+
+    <EditText
+        android:id="@+id/txtemail"
+        android:layout_width="366dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtTelefono"
+        android:fontFamily="@font/comfortaa_regular"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtdireccion"
+        app:layout_constraintVertical_bias="0.072" />
+
+    <EditText
+        android:id="@+id/txtdui"
+        android:layout_width="366dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtemail"
+        android:fontFamily="@font/comfortaa_regular"
+        android:hint="DUI"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtemail"
+        app:layout_constraintVertical_bias="0.086" />
+
+    <EditText
+        android:id="@+id/txtTelefono"
+        android:layout_width="366dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtdireccion"
+        android:fontFamily="@font/comfortaa_regular"
+        android:hint="Telefono"
+        android:inputType="phone"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtdui"
+        app:layout_constraintVertical_bias="0.11" />
+
+    <Button
+        android:id="@+id/btnGuardarAmigos"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtdui"
+        android:background="@drawable/bg_boton"
+        android:backgroundTint="@color/beige"
+        android:fontFamily="@font/comfortaa_bold"
+        android:gravity="center"
+        android:text="GUARDAR USUARIO"
+        android:textColor="@color/darkblue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTelefono"
+        app:layout_constraintVertical_bias="0.414" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

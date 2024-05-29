@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
         //BottomNavegation
         bottomNavigationView = findViewById(R.id.bottomNavegation);
-        bottomNavigationView.setSelectedItemId(R.id.navGps);
+       // bottomNavigationView.setSelectedItemId(R.id.navGps);
 
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.navMensajeria:
-                        startActivity(new Intent(getApplicationContext(), Mensajeria.class));
+                        startActivity(new Intent(getApplicationContext(), lista_usuarios.class));
                         finish();
                         return true;
                 }

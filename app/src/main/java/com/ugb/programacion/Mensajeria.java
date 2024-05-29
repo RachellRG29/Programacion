@@ -7,14 +7,19 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-//Yarit y karen hacer mensajeria.
+//Yarit y karen hacer mensajeria. este es el chats de los usuarios
 public class Mensajeria extends AppCompatActivity {
-    BottomNavigationView bottomNavigationView;
+    ImageView imgAtras;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,31 +29,16 @@ public class Mensajeria extends AppCompatActivity {
         //cambiar color barra estado
         cambiarColorBarraEstado(getResources().getColor(R.color.darkblue));
 
-        //BottomNavegation
-        bottomNavigationView = findViewById(R.id.bottomNavegation);
-        bottomNavigationView.setSelectedItemId(R.id.navMensajeria);
 
-        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
+        //Regresar atras a la lista de usuarios o amigos
+        imgAtras= findViewById(R.id.imgAtras);
+        imgAtras.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.navPrincipal:
-                        // Acciones para Principal
-                        startActivity(new Intent(getApplicationContext(), lista_delivery.class));
-                        finish();
-                        return true;
-
-                    case R.id.navGps:
-                        startActivity(new Intent(getApplicationContext(), Gps.class));
-                        finish();
-                        return true;
-
-                    case R.id.navMensajeria:
-                        return true;
-                }
-                return false;
+            public void onClick(View v) {
+                irLista();
             }
-        }); // fin navigation
+        });
+
 
 
 
@@ -58,7 +48,12 @@ public class Mensajeria extends AppCompatActivity {
 
 
 
-//Usar LA PALETA DE COLOR SUGERIDA
+    private void irLista(){ //ir o regresar a la
+        Intent abrirVentana = new Intent(getApplicationContext(), lista_usuarios.class);
+        startActivity(abrirVentana);
+    }
+
+
     //CAMBIAR EL COLOR DE LA BARRA DE ESTADO
     private void cambiarColorBarraEstado(int color) {
         // Verificar si la versión del SDK es Lollipop o superior
