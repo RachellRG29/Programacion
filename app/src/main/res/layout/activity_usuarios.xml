@@ -42,7 +42,7 @@
         app:layout_constraintVertical_bias="0.059" />
 
     <EditText
-        android:id="@+id/txtnombre"
+        android:id="@+id/txtnombreuser"
         android:layout_width="366dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/imgAmigo"
@@ -62,7 +62,7 @@
         android:id="@+id/txtdireccion"
         android:layout_width="366dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtnombre"
+        android:layout_below="@id/txtnombreuser"
         android:fontFamily="@font/comfortaa_regular"
         android:hint="Direccion"
         android:inputType="textMultiLine"
@@ -72,7 +72,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtnombre"
+        app:layout_constraintTop_toBottomOf="@+id/txtnombreuser"
         app:layout_constraintVertical_bias="0.057" />
 
     <EditText

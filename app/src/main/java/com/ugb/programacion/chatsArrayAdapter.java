@@ -1,11 +1,10 @@
 package com.ugb.programacion;
 
-import static java.security.AccessController.getContext;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,18 +13,18 @@ import androidx.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class chatsArrayAdapter {
+public class chatsArrayAdapter extends ArrayAdapter {
     private Context context;
     private List<chatMessage> chatMessageList = new ArrayList<>();
     private TextView chatText;
 
     public chatsArrayAdapter(@NonNull Context context, int resource) {
-        //super(context, resource);
+        super(context, resource);
         this.context = context;
     }
     public void add(chatMessage object){
         chatMessageList.add(object);
-       // super.wait(object);
+        super.add(object);
     }
     public int getCount(){
         return chatMessageList.size();
@@ -39,13 +38,13 @@ public class chatsArrayAdapter {
         try {
             chatMessage objChatMessage = getItem(posicion);
 
-            //LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             if (objChatMessage.posicion) {
-               // fila = layoutInflater.inflate(R.layout.izquierda, viewGroup, false);
-                chatText = fila.findViewById(R.id.lblmsgizq);
+                fila = layoutInflater.inflate(R.layout.msgizquierdo, viewGroup, false);
+                chatText = fila.findViewById(R.id.lblmsgi);
             } else {
-                //fila = layoutInflater.inflate(R.layout.derecha, viewGroup, false);
-                chatText = fila.findViewById(R.id.lblmsgder);
+                fila = layoutInflater.inflate(R.layout.msgdrecho, viewGroup, false);
+                chatText = fila.findViewById(R.id.lblmsgd);
             }
             chatText.setText(objChatMessage.message);
 

@@ -1,10 +1,13 @@
 package com.ugb.programacion;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,10 +17,25 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.dhaval2404.imagepicker.ImagePicker;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.File;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -26,8 +44,16 @@ public class Usuarios extends AppCompatActivity {
     Button btnGuardarAmigos;
     CircleImageView cirimgAmigo;
     ImageView imgAtrasListaUsuario;
-    String accion="nuevo", id="", imgproductourl="", imgproductoFirebaseurrl="", rev="", idProducto="";
+    TextView tempVal;
+    String accion="nuevo", id="", imgusuariourl="", getimgusuariosFirebaseurl="", rev="", idAmigo="";
+    utilidades utls;
+    detectarInternet di;
+    DatabaseReference databaseReference;
 
+    JSONArray datosUserJSON;
+    JSONObject jsonUserObject;
+    String miToken="";
+    Token objToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +63,12 @@ public class Usuarios extends AppCompatActivity {
         //cambiar color barra estado
         cambiarColorBarraEstado(getResources().getColor(R.color.darkblue));
 
+        obtenerToken();
+        di = new detectarInternet(getApplicationContext());
+        utls = new utilidades();
+
         //valores para los productos
-        EditText txtnombre= (EditText)findViewById(R.id.txtnombre);
+        EditText txtnombreuser= (EditText)findViewById(R.id.txtnombreuser);
         EditText txtdireccion= (EditText)findViewById(R.id.txtdireccion);
         EditText txtemail= (EditText)findViewById(R.id.txtemail);
         EditText txtdui= (EditText)findViewById(R.id.txtdui);
@@ -74,12 +104,12 @@ public class Usuarios extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(txtnombre.getText().toString().isEmpty() || txtdireccion.getText().toString().isEmpty() ||
+                if(txtnombreuser.getText().toString().isEmpty() || txtdireccion.getText().toString().isEmpty() ||
                         txtemail.getText().toString().isEmpty() || txtdui.getText().toString().isEmpty() ||
                         txttelefono.getText().toString().isEmpty()  ){
 
 
-                    txtnombre.setError("Campo requerido");
+                    txtnombreuser.setError("Campo requerido");
                     txtdireccion.setError("Campo requerido");
                     txtemail.setError("Campo requerido");
                     txtdui.setError("Campo requerido");
@@ -88,28 +118,132 @@ public class Usuarios extends AppCompatActivity {
                 } else {
                     //Guardar usuarios con firebase
                     try {
-                        //subirFotoFirestore();
+                        subirFotoFirestore();
                     }catch (Exception e){
                         mostrarMsg("Error al llamar metodos de subir fotos: "+ e.getMessage());
                     }
 
                 }
 
-
-
-
             }
         });
 
-
-
-
+        mostrarDatosAmigos();
 
     }
 
 
 
     //Private voids
+
+    private void mostrarDatosAmigos(){
+        try {
+            Bundle parametros = getIntent().getExtras();
+            accion = parametros.getString("accion");
+            if( accion.equals("modificar") ){
+                JSONObject jsonUserObject = new JSONObject(parametros.getString("amigos")).getJSONObject("value");
+                id = jsonUserObject.getString("_id");
+                rev = jsonUserObject.getString("_rev");
+                idAmigo = jsonUserObject.getString("idAmigo");
+
+                tempVal = findViewById(R.id.txtnombreuser);
+                tempVal.setText(jsonUserObject.getString("nombre"));
+
+                tempVal = findViewById(R.id.txtdireccion);
+                tempVal.setText(jsonUserObject.getString("direccion"));
+
+                tempVal = findViewById(R.id.txtTelefono);
+                tempVal.setText(jsonUserObject.getString("telefono"));
+
+                tempVal = findViewById(R.id.txtemail);
+                tempVal.setText(jsonUserObject.getString("email"));
+
+                tempVal = findViewById(R.id.txtdui);
+                tempVal.setText(jsonUserObject.getString("dui"));
+
+                imgusuariourl = jsonUserObject.getString("imgusuario");
+                Bitmap bitmap = BitmapFactory.decodeFile(imgusuariourl);
+                cirimgAmigo.setImageBitmap(bitmap);
+            }else{ //nuevo registro
+                idAmigo = utls.generarIdUnico();
+            }
+        }catch (Exception e){
+            mostrarMsg("Error al mostrar los datos: "+ e.getMessage());
+        }
+    }
+
+    void obtenerToken(){
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(tarea-> {
+            if (!tarea.isSuccessful()) {
+                return;
+            }
+            miToken = tarea.getResult();
+        });
+    }
+    private void subirFotoFirestore(){
+        mostrarMsg("Subiendo foto al servidor...");
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+        Uri file = Uri.fromFile(new File(imgusuariourl));
+        final StorageReference reference = storageReference.child("fotosuser/"+file.getLastPathSegment());
+
+        final UploadTask uploadTask = reference.putFile(file);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                mostrarMsg("Error al subir la foto: "+ e.getMessage());
+            }
+        });
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                mostrarMsg("Foto subida con exito.");
+                Task<Uri> downloadUri = uploadTask.continueWithTask(task -> reference.getDownloadUrl()).addOnCompleteListener(task -> {
+                    if( task.isSuccessful() ){
+                        getimgusuariosFirebaseurl = task.getResult().toString();
+                        guardarAmigos();
+                    }else{
+                        mostrarMsg("La foto se subio, pero con errores, nose pudo obtener el enlace.");
+                    }
+                });
+            }
+        });
+    }
+    private void guardarAmigos(){
+        try {
+            tempVal = findViewById(R.id.txtnombre);
+            String nombreuser = tempVal.getText().toString();
+
+            tempVal = findViewById(R.id.txtdireccion);
+            String direccion = tempVal.getText().toString();
+
+            tempVal = findViewById(R.id.txtTelefono);
+            String telefono = tempVal.getText().toString();
+
+            tempVal = findViewById(R.id.txtemail);
+            String email = tempVal.getText().toString();
+
+            tempVal = findViewById(R.id.txtdui);
+            String dui = tempVal.getText().toString();
+
+            databaseReference = FirebaseDatabase.getInstance().getReference("amigos");
+            String key  = databaseReference.push().getKey();
+
+            if( miToken.equals("") || miToken==null ){
+                obtenerToken();
+            }
+            amigos amigo = new amigos(idAmigo,nombreuser,direccion,telefono,email,dui,imgusuariourl,getimgusuariosFirebaseurl,miToken);
+            if( key!=null ){
+                databaseReference.child(key).setValue(amigo).addOnSuccessListener(unused -> {
+                    mostrarMsg("Usuario registrado con exito.");
+                    irListaUsuarios();
+                });
+            }else{
+                mostrarMsg("Error no se inserto el usuario en la base de datos.");
+            }
+        }catch (Exception ex){
+            mostrarMsg("Error al guardar usuario: "+ex.getMessage());
+        }
+    }
 
     //Camara y galeria totalmente funcional
     @Override
@@ -120,7 +254,7 @@ public class Usuarios extends AppCompatActivity {
                 Uri uri = data.getData();
                 if (uri != null) {
                     cirimgAmigo.setImageURI(uri);
-                    //imgproductourl = uri.getPath(); // Almacenar la URL de la imagen :3
+                    imgusuariourl = uri.getPath(); // Almacenar la URL de la imagen :3
                 } else {
                     mostrarMsg("No se pudo obtener la imagen seleccionada.");
                 }

@@ -84,7 +84,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginStart="356dp"
         android:layout_marginTop="0dp"
-        android:background="@color/redmaroon"
+        android:background="@color/blueblue"
         android:foreground="@drawable/icon_enviar"
         android:foregroundTint="@color/beige"
          />
