@@ -50,7 +50,6 @@ dependencies {
     // FirebaseUI for Cloud Storage
     implementation 'com.firebaseui:firebase-ui-storage:8.0.2'
 
-
     //circular: imagenes en listview, galeria, mensajeria
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
@@ -59,6 +58,9 @@ dependencies {
 
     //pick image: activity agregar, para seleccionar camara y galeria
     implementation 'com.github.dhaval2404:imagepicker:2.1'
+
+    //imagenSlideshow: imagenes que se desplazan
+    implementation 'com.github.denzcoskun:ImageSlideshow:0.1.0'
 
     
 }

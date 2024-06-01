@@ -8,8 +8,11 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -26,7 +29,12 @@ public class Gps extends AppCompatActivity {
 
         cambiarColorBarraEstado(getResources().getColor(R.color.darkblue));
 
+        // Inicializar seccion usuario
+        seccionUsuario seccionUsuario = new seccionUsuario(getApplicationContext());
 
+        // Utiliza la información de sesión según sea necesario
+        String usuarioLogeado = seccionUsuario.getUsername();
+        boolean isAdmin = seccionUsuario.isAdmin();
 
 
         //BottomNavegation

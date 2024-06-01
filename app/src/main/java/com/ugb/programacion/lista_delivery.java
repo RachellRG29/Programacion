@@ -23,6 +23,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.models.SlideModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -36,6 +39,7 @@ public class lista_delivery extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     FloatingActionButton btnIrRegistrar;
     TextView lblusuariotexto;
+    ImageSlider imageConsoles;
     Bundle parametros = new Bundle();
     ListView lts, ltsconsolas;
     Cursor cProductos;
@@ -59,12 +63,29 @@ public class lista_delivery extends AppCompatActivity {
 
         dbProductos = new DB(lista_delivery.this,"",null,1);
 
+        //imagenes slide(desplazables)
+        imageConsoles= findViewById(R.id.imgSlideConsolas);
+        ArrayList<SlideModel> slideModels = new ArrayList<>();
+        slideModels.add(new SlideModel(R.drawable.imgconsolakirby, ScaleTypes.CENTER_CROP));
+        slideModels.add(new SlideModel(R.drawable.imgconsolanintendo, ScaleTypes.CENTER_CROP));
+        slideModels.add(new SlideModel(R.drawable.imgconsolatulipan, ScaleTypes.CENTER_CROP));
+        slideModels.add(new SlideModel(R.drawable.imgconsolazeldaespecial, ScaleTypes.CENTER_CROP));
+        slideModels.add(new SlideModel(R.drawable.imgnintendosupermariobros, ScaleTypes.CENTER_CROP));
+
+        imageConsoles.setImageList(slideModels, ScaleTypes.CENTER_CROP);
+
         //Para que el usuario logeado, vea su usuario
         lblusuariotexto= findViewById(R.id.lblUsuarioLogeado);
 
-        // Obtiene el nombre desde el login
+        // Inicializar session del usuario logeado
+        seccionUsuario sessionUsuario = new seccionUsuario(getApplicationContext());
+
+        // Crear la sesión con los datos del intent
         String usuarioLogeado = getIntent().getStringExtra("usuario_logeado");
+        boolean isAdmin = getIntent().getBooleanExtra("is_admin", false);
+
         if (usuarioLogeado != null) {
+            sessionUsuario.createLoginSession(usuarioLogeado, isAdmin);
             lblusuariotexto.setText(usuarioLogeado);
         }
 
@@ -72,8 +93,7 @@ public class lista_delivery extends AppCompatActivity {
         btnIrRegistrar = findViewById(R.id.btnAgregarProducto);
 
         // Obtiene el usuario y si es admin el boton se hara visible, de lo contrario no :3
-        boolean isAdmin = getIntent().getBooleanExtra("is_admin", false);
-        if (isAdmin) {
+        if (sessionUsuario.isAdmin()) {
             btnIrRegistrar.setVisibility(View.VISIBLE);
         } else {
             btnIrRegistrar.setVisibility(View.GONE);
@@ -439,3 +459,21 @@ public class lista_delivery extends AppCompatActivity {
 
 
 } //fin lista_productos
+
+/*    <!-- categorias  -->
+            <TextView
+                android:id="@+id/lblcategoria"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_boton"
+                android:fontFamily="@font/comfortaa_bold"
+                android:gravity="center"
+                android:text="  Categorias  "
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.054"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.051" />*/

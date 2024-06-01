@@ -29,6 +29,9 @@ public class Mensajeria extends AppCompatActivity {
         //cambiar color barra estado
         cambiarColorBarraEstado(getResources().getColor(R.color.darkblue));
 
+        // Inicializar seccion usuario
+        seccionUsuario seccionUsuario = new seccionUsuario(getApplicationContext());
+
 
         //Regresar atras a la lista de usuarios o amigos
         imgAtras= findViewById(R.id.imgAtras);
@@ -48,7 +51,7 @@ public class Mensajeria extends AppCompatActivity {
 
 
 
-    private void irLista(){ //ir o regresar a la
+    private void irLista(){ //ir o regresar a la lista de usuarios
         Intent abrirVentana = new Intent(getApplicationContext(), lista_usuarios.class);
         startActivity(abrirVentana);
     }

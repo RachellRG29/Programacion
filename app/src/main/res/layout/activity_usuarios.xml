@@ -16,7 +16,7 @@
         android:layout_alignParentTop="true"
         android:background="@drawable/icon_atras"
         android:backgroundTint="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/txtnombre"
+        app:layout_constraintBottom_toTopOf="@+id/txtnombreuser"
         app:layout_constraintEnd_toStartOf="@+id/imgAmigo"
         app:layout_constraintHorizontal_bias="0.14"
         app:layout_constraintStart_toStartOf="parent"

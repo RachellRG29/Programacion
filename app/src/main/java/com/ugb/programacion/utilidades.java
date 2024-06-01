@@ -4,15 +4,15 @@ import java.util.Base64;
 public class utilidades {
     //ipconfig para revisar la direccion de la maquina, puede cambiar
     //Karen
-    static String urlConsulta = "http://192.168.71.143:5984/console/_design/express/_view/express";
+   /*  static String urlConsulta = "http://192.168.71.143:5984/console/_design/express/_view/express";
     static String urlMto = "http://192.168.71.143:5984/console";
     static String user = "admin";
-    static String passwd = "2013";
+    static String passwd = "2013";*/
 
-   /* static String urlConsulta = "http://192.168.1.2:5984/yaritza/_design/cindy/_view/cindy";
+   static String urlConsulta = "http://192.168.1.2:5984/yaritza/_design/cindy/_view/cindy";
     static String urlMto = "http://192.168.1.2:5984/yaritza";
     static String user = "Cindy";
-    static String passwd = "couch129.29";*/
+    static String passwd = "couch129.29";
     static String credencialesCodificadas = Base64.getEncoder().encodeToString((user +":"+ passwd).getBytes());
     public String generarIdUnico(){
         return java.util.UUID.randomUUID().toString();

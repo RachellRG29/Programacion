@@ -101,33 +101,44 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/groupcategoria"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="160dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-            <!-- categorias  -->
-            <TextView
-                android:id="@+id/lblcategoria"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_boton"
-                android:fontFamily="@font/comfortaa_bold"
-                android:gravity="center"
-                android:text="  Categorias  "
-                android:textColor="@color/white"
-                android:textSize="14sp"
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardImage"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginBottom="10dp"
+                app:cardBackgroundColor="@color/beige"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.054"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.051" />
+                app:layout_constraintTop_toTopOf="parent">
 
+                <com.denzcoskun.imageslider.ImageSlider
+                    android:id="@+id/imgSlideConsolas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:iss_auto_cycle="true"
+                    app:iss_corner_radius="20"
+                    app:iss_delay="1000"
+                    app:iss_period="1000"
+                    app:iss_title_background="@drawable/bg_gradient"
+                    app:layout_constraintBottom_toBottomOf="@+id/cardImage"
+                    app:layout_constraintEnd_toEndOf="@+id/cardImage"
+                    app:layout_constraintStart_toStartOf="@+id/cardImage"
+                    app:layout_constraintTop_toTopOf="@+id/cardImage" />
 
-
-
+            </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

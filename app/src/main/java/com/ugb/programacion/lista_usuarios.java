@@ -172,7 +172,7 @@ public class lista_usuarios extends AppCompatActivity {
     }
 
     private void abrirActividad(Bundle parametros){
-        Intent abriVentana = new Intent(getApplicationContext(), MainActivity.class);
+        Intent abriVentana = new Intent(getApplicationContext(), lista_usuarios.class);
         abriVentana.putExtras(parametros);
         startActivity(abriVentana);
     }
@@ -197,7 +197,6 @@ public class lista_usuarios extends AppCompatActivity {
                     jsonObjectValue.put("value", jsonUserObject);
                     datosUserJSON.put(jsonObjectValue);
                 }while(cAmigos.moveToNext());
-                mostrarDatosAmigos();
             }else{
                 mostrarMsg("No hay amigos que mostrar");
             }
@@ -314,7 +313,7 @@ public class lista_usuarios extends AppCompatActivity {
                 bundle.putString("imgusuario", datosUserJSON.getJSONObject(position).getString("imgusuario") );
                 bundle.putString("imgusuariosFirebaseurl", datosUserJSON.getJSONObject(position).getString("imgusuariosFirebaseurl") );
 
-                Intent intent = new Intent(getApplicationContext(), Mensajeria.class);
+                Intent intent = new Intent(getApplicationContext(), Usuarios.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }catch (Exception ex){

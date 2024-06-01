@@ -210,7 +210,7 @@ public class Usuarios extends AppCompatActivity {
     }
     private void guardarAmigos(){
         try {
-            tempVal = findViewById(R.id.txtnombre);
+            tempVal = findViewById(R.id.txtnombreuser);
             String nombreuser = tempVal.getText().toString();
 
             tempVal = findViewById(R.id.txtdireccion);

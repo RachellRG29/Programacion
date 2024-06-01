@@ -54,6 +54,14 @@ public class MainActivity extends AppCompatActivity {
 
         //cambiar color barra estado
         cambiarColorBarraEstado(getResources().getColor(R.color.darkblue));
+
+        // Inicializar seccion usuario
+        seccionUsuario seccionUsuario = new seccionUsuario(getApplicationContext());
+
+        // Utiliza la información de sesión según sea necesario
+        String usuarioLogeado = seccionUsuario.getUsername();
+        boolean isAdmin = seccionUsuario.isAdmin();
+
         di = new detectarInternet(getApplicationContext());
         utls = new utilidades();
 
