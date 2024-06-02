@@ -90,6 +90,7 @@ public class lista_delivery extends AppCompatActivity {
             lblusuariotexto.setText(usuarioLogeado);
         }
 
+
         //Boton agregar
         btnIrRegistrar = findViewById(R.id.btnAgregarProducto);
 
@@ -450,6 +451,8 @@ public class lista_delivery extends AppCompatActivity {
             }
         });
     }
+
+
 
     private void irAgregar(Bundle parametros){
         Intent abrirVentana = new Intent(getApplicationContext(), MainActivity.class);

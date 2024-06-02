@@ -53,6 +53,9 @@ dependencies {
     //circular: imagenes en listview, galeria, mensajeria
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
+    //RoundImage: redondea las imagenes: circulares, cuadradas, semicuadradas,ect
+    implementation 'com.github.mmmelik:RoundedImageView:v1.0.1'
+
     //recortar imagen: mensajeria
     implementation 'com.github.bumptech.glide:glide:4.16.0'
 

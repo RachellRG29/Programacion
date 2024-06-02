@@ -1,28 +1,26 @@
 package com.ugb.programacion;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.appbroker.roundedimageview.RoundedImageView;
+
 import java.util.ArrayList;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
-public class adaptadorImagenes extends BaseAdapter {
+public class adaptadorConsolas extends BaseAdapter {
     Context context;
     ArrayList<productos> datosProductosArrayList;
     productos misProductos;
     LayoutInflater layoutInflater;
 
-    public adaptadorImagenes(Context context, ArrayList<productos> datosProductosArrayList) {
+    public adaptadorConsolas(Context context, ArrayList<productos> datosProductosArrayList) {
         this.context = context;
         this.datosProductosArrayList = datosProductosArrayList;
 
@@ -39,27 +37,39 @@ public class adaptadorImagenes extends BaseAdapter {
     public long getItemId(int i) {
         return i;
     }
-
-   @Override
+    @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         layoutInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-        View itemView = layoutInflater.inflate(R.layout.listview_imagenes, viewGroup, false);
+        View itemView = layoutInflater.inflate(R.layout.listview_consolas, viewGroup, false);
         try{
             misProductos = datosProductosArrayList.get(i);
 
-            TextView tempVal = itemView.findViewById(R.id.lblNombre);
+
+            TextView tempVal= itemView.findViewById(R.id.lblCodigo);
+            tempVal.setText(misProductos.getCodigo());
+
+            tempVal = itemView.findViewById(R.id.lblNombre);
             tempVal.setText(misProductos.getNombre());
 
             tempVal = itemView.findViewById(R.id.lblMarca);
             tempVal.setText(misProductos.getMarca());
 
+            tempVal= itemView.findViewById(R.id.lblCosto);
+            tempVal.setText(misProductos.getCosto());
+
             tempVal= itemView.findViewById(R.id.lblStock);
             tempVal.setText(misProductos.getStock());
 
+            tempVal= itemView.findViewById(R.id.lblGanancia);
+            tempVal.setText(misProductos.getGanancia());
+
+            tempVal = itemView.findViewById(R.id.lblDescripcion);
+            tempVal.setText(misProductos.getDescripcion());
+
             //Imagen----
-            CircleImageView circleImageView = itemView.findViewById(R.id.imgProductoListVista);
+            RoundedImageView roundedImageView = itemView.findViewById(R.id.imgProductoListVista);
             Bitmap bitmap = BitmapFactory.decodeFile(misProductos.getImgProducto());
-            circleImageView.setImageBitmap(bitmap);
+            roundedImageView.setImageBitmap(bitmap);
 
             // Calcular el precio
             double costo = Double.parseDouble(misProductos.getCosto());
