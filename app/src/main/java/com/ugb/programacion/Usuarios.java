@@ -49,9 +49,6 @@ public class Usuarios extends AppCompatActivity {
     utilidades utls;
     detectarInternet di;
     DatabaseReference databaseReference;
-
-    JSONArray datosUserJSON;
-    JSONObject jsonUserObject;
     String miToken="";
     Token objToken;
 

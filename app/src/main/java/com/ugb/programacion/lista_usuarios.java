@@ -30,12 +30,14 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
 //aqui esta el activity que se regitraron los usuarios
 public class lista_usuarios extends AppCompatActivity {
 
+    seccionUsuario session;
     BottomNavigationView bottomNavigationView;
     FloatingActionButton btnAgregarUser;
     Bundle parametrosuser = new Bundle();
@@ -117,7 +119,9 @@ public class lista_usuarios extends AppCompatActivity {
     }
 
 
-    //
+    //private voids
+
+
     private void sincronizar(){
         try{
             /*cAmigos = dbAmigos.pendienteSincronizar();
@@ -171,11 +175,7 @@ public class lista_usuarios extends AppCompatActivity {
         }
     }
 
-    private void abrirActividad(Bundle parametros){
-        Intent abriVentana = new Intent(getApplicationContext(), lista_usuarios.class);
-        abriVentana.putExtras(parametros);
-        startActivity(abriVentana);
-    }
+
     private void obtenerAmigos(){
         try{
             cAmigos = dbAmigos.consultar_amigos();
@@ -367,6 +367,12 @@ public class lista_usuarios extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void abrirActividad(Bundle parametros){
+        Intent abriVentana = new Intent(getApplicationContext(), lista_usuarios.class);
+        abriVentana.putExtras(parametros);
+        startActivity(abriVentana);
     }
 
     private void irAgregarUser(){

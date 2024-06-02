@@ -38,13 +38,14 @@ public class lista_delivery extends AppCompatActivity {
     //VARIABLES
     BottomNavigationView bottomNavigationView;
     FloatingActionButton btnIrRegistrar;
+    seccionUsuario session;
     TextView lblusuariotexto;
     ImageSlider imageConsoles;
     Bundle parametros = new Bundle();
-    ListView lts, ltsconsolas;
+    ListView lts;
     Cursor cProductos;
     DB dbProductos;
-    productos misProductos, productoSeleccionado;
+    productos misProductos;
     final ArrayList<productos> alProductos=new ArrayList<productos>();
     final ArrayList<productos> alProductosCopy=new ArrayList<productos>();
     JSONArray datosJSON;
@@ -74,18 +75,18 @@ public class lista_delivery extends AppCompatActivity {
 
         imageConsoles.setImageList(slideModels, ScaleTypes.CENTER_CROP);
 
-        //Para que el usuario logeado, vea su usuario
+        //lblusername, usuario logeado
         lblusuariotexto= findViewById(R.id.lblUsuarioLogeado);
 
         // Inicializar session del usuario logeado
-        seccionUsuario sessionUsuario = new seccionUsuario(getApplicationContext());
+        session = new seccionUsuario(getApplicationContext());
 
-        // Crear la sesión con los datos del intent
+        // Seccion con los datos registrados
         String usuarioLogeado = getIntent().getStringExtra("usuario_logeado");
         boolean isAdmin = getIntent().getBooleanExtra("is_admin", false);
 
         if (usuarioLogeado != null) {
-            sessionUsuario.createLoginSession(usuarioLogeado, isAdmin);
+            session.createLoginSession(usuarioLogeado, isAdmin);
             lblusuariotexto.setText(usuarioLogeado);
         }
 
@@ -93,7 +94,7 @@ public class lista_delivery extends AppCompatActivity {
         btnIrRegistrar = findViewById(R.id.btnAgregarProducto);
 
         // Obtiene el usuario y si es admin el boton se hara visible, de lo contrario no :3
-        if (sessionUsuario.isAdmin()) {
+        if (session.isAdmin()) {
             btnIrRegistrar.setVisibility(View.VISIBLE);
         } else {
             btnIrRegistrar.setVisibility(View.GONE);
@@ -150,6 +151,17 @@ public class lista_delivery extends AppCompatActivity {
     } //fin ONCREATE
 
     //AGREGAR PRIVATE VOIDS
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String usuarioLogeado = session.getUsername();
+        if (usuarioLogeado != null) {
+            lblusuariotexto.setText(usuarioLogeado);
+        }
+    }
+
+
     private void sincronizar(){
         try{
             cProductos = dbProductos.pendienteSincronizar();
@@ -459,21 +471,3 @@ public class lista_delivery extends AppCompatActivity {
 
 
 } //fin lista_productos
-
-/*    <!-- categorias  -->
-            <TextView
-                android:id="@+id/lblcategoria"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_boton"
-                android:fontFamily="@font/comfortaa_bold"
-                android:gravity="center"
-                android:text="  Categorias  "
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.054"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.051" />*/
