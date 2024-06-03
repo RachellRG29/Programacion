@@ -9,8 +9,8 @@ public class utilidades {
     static String user = "admin";
     static String passwd = "2013";*/
 
-   static String urlConsulta = "http://192.168.1.3:5984/yaritza/_design/cindy/_view/cindy";
-    static String urlMto = "http://192.168.1.3:5984/yaritza";
+   static String urlConsulta = "http://192.168.1.2:5984/yaritza/_design/cindy/_view/cindy";
+    static String urlMto = "http://192.168.1.2:5984/yaritza";
     static String user = "Cindy";
     static String passwd = "couch129.29";
     static String credencialesCodificadas = Base64.getEncoder().encodeToString((user +":"+ passwd).getBytes());

@@ -1,6 +1,7 @@
 package com.ugb.programacion;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
@@ -18,35 +19,40 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class adaptadorConsolas extends BaseAdapter {
     Context context;
     ArrayList<productos> datosProductosArrayList;
-    productos misProductos;
     LayoutInflater layoutInflater;
-    Button btnRegresarAdaptador;
 
     public adaptadorConsolas(Context context, ArrayList<productos> datosProductosArrayList) {
         this.context = context;
         this.datosProductosArrayList = datosProductosArrayList;
-
+        this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
+
     @Override
     public int getCount() {
         return datosProductosArrayList.size();
     }
-    @Override
-    public Object getItem(int i) {
-        return datosProductosArrayList.get(i);
-    }
-    @Override
-    public long getItemId(int i) {
-        return i;
-    }
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        layoutInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-        View itemView = layoutInflater.inflate(R.layout.listview_consolas, viewGroup, false);
-        try{
-            misProductos = datosProductosArrayList.get(i);
 
-            TextView tempVal= itemView.findViewById(R.id.lblCodigo);
+    @Override
+    public Object getItem(int position) {
+        return datosProductosArrayList.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        View itemView = convertView;
+        if (itemView == null) {
+            itemView = layoutInflater.inflate(R.layout.listview_consolas, parent, false);
+        }
+
+        productos misProductos = datosProductosArrayList.get(position);
+
+        try {
+            TextView tempVal = itemView.findViewById(R.id.lblCodigo);
             tempVal.setText(misProductos.getCodigo());
 
             tempVal = itemView.findViewById(R.id.lblNombre);
@@ -55,13 +61,13 @@ public class adaptadorConsolas extends BaseAdapter {
             tempVal = itemView.findViewById(R.id.lblMarca);
             tempVal.setText(misProductos.getMarca());
 
-            tempVal= itemView.findViewById(R.id.lblCosto);
+            tempVal = itemView.findViewById(R.id.lblCosto);
             tempVal.setText(misProductos.getCosto());
 
-            tempVal= itemView.findViewById(R.id.lblStock);
+            tempVal = itemView.findViewById(R.id.lblStock);
             tempVal.setText(misProductos.getStock());
 
-            tempVal= itemView.findViewById(R.id.lblGanancia);
+            tempVal = itemView.findViewById(R.id.lblGanancia);
             tempVal.setText(misProductos.getGanancia());
 
             tempVal = itemView.findViewById(R.id.lblDescripcion);
@@ -81,17 +87,27 @@ public class adaptadorConsolas extends BaseAdapter {
             tempVal = itemView.findViewById(R.id.lblPrecio);
             tempVal.setText(String.format("$%.2f", precio));
 
-        }catch (Exception e){
-            Toast.makeText(context, "Error al mostrar datos: "+e.getMessage(), Toast.LENGTH_LONG).show();
+            // Botón regresar
+            Button btnRegresarLista = itemView.findViewById(R.id.btn_regresarlistimg);
+            btnRegresarLista.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, lista_delivery.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                }
+            });
+
+        } catch (Exception e) {
+            Toast.makeText(context, "Error al mostrar datos: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
+
         return itemView;
     }
-
 
     // Función para calcular el precio
     private double calcularPrecio(double costo, double ganancia) {
         return costo * (1 + (ganancia / 100));
     }
-
 }
 
