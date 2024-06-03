@@ -7,18 +7,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.appbroker.roundedimageview.RoundedImageView;
-
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class adaptadorConsolas extends BaseAdapter {
     Context context;
     ArrayList<productos> datosProductosArrayList;
     productos misProductos;
     LayoutInflater layoutInflater;
+    Button btnRegresarAdaptador;
 
     public adaptadorConsolas(Context context, ArrayList<productos> datosProductosArrayList) {
         this.context = context;
@@ -44,7 +46,6 @@ public class adaptadorConsolas extends BaseAdapter {
         try{
             misProductos = datosProductosArrayList.get(i);
 
-
             TextView tempVal= itemView.findViewById(R.id.lblCodigo);
             tempVal.setText(misProductos.getCodigo());
 
@@ -67,9 +68,9 @@ public class adaptadorConsolas extends BaseAdapter {
             tempVal.setText(misProductos.getDescripcion());
 
             //Imagen----
-            RoundedImageView roundedImageView = itemView.findViewById(R.id.imgProductoListVista);
+            CircleImageView circleImageView = itemView.findViewById(R.id.imgProductoListConsola);
             Bitmap bitmap = BitmapFactory.decodeFile(misProductos.getImgProducto());
-            roundedImageView.setImageBitmap(bitmap);
+            circleImageView.setImageBitmap(bitmap);
 
             // Calcular el precio
             double costo = Double.parseDouble(misProductos.getCosto());
@@ -80,12 +81,12 @@ public class adaptadorConsolas extends BaseAdapter {
             tempVal = itemView.findViewById(R.id.lblPrecio);
             tempVal.setText(String.format("$%.2f", precio));
 
-
         }catch (Exception e){
             Toast.makeText(context, "Error al mostrar datos: "+e.getMessage(), Toast.LENGTH_LONG).show();
         }
         return itemView;
     }
+
 
     // Función para calcular el precio
     private double calcularPrecio(double costo, double ganancia) {
