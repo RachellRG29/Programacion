@@ -19,7 +19,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class adaptadorImagenes extends ArrayAdapter<productos> {
     private Context context;
-
     public adaptadorImagenes(Context context, ArrayList<productos> datosProductosArrayList) {
         super(context, 0, datosProductosArrayList);
         this.context = context;
@@ -28,7 +27,6 @@ public class adaptadorImagenes extends ArrayAdapter<productos> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Inicializar seccion usuario
-        seccionUsuario seccionUsuario = new seccionUsuario(context.getApplicationContext());
 
 
         View itemView = convertView;
