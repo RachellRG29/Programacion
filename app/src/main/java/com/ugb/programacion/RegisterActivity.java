@@ -36,12 +36,10 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseFirestore mFirestore;
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
-
     TextView tempReg;
     String accion = "nuevo", idRegister = "";
     int posicion = 0;
     Bundle parametros = new Bundle();
-
     private EditText usuario, correo, contrasena;
 
     @Override
@@ -185,5 +183,8 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 } // fin RegisterActivity
+
+
+
 
 

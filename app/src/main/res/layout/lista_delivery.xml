@@ -82,7 +82,7 @@
             app:layout_constraintStart_toEndOf="@+id/lblnameapp"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/btnUser"
             android:layout_width="36dp"
             android:layout_height="36dp"

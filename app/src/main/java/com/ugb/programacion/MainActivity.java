@@ -44,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
     utilidades utls;
     detectarInternet di;
 
+    seccionUsuario session;
+    TextView lblusuariotexto;
+
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int REQUEST_IMAGE_PICKER = 2;
 

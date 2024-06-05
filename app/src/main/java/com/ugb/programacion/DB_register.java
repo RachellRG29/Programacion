@@ -56,3 +56,6 @@ public class DB_register extends SQLiteOpenHelper{
 } //fin db register
 
 
+
+
+
