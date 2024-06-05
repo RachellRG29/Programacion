@@ -298,12 +298,6 @@ public class lista_delivery extends AppCompatActivity {
         inflater.inflate(R.menu.mimenu, menu);
         boolean isAdmin = getIntent().getBooleanExtra("is_admin", false);
 
-        if (!isAdmin) {
-            menu.findItem(R.id.mnxAgregar).setVisible(false);
-            menu.findItem(R.id.mnxModificar).setVisible(false);
-            menu.findItem(R.id.mnxEliminar).setVisible(false);
-        }
-
         try {
             AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
             posicion = info.position;
@@ -311,6 +305,14 @@ public class lista_delivery extends AppCompatActivity {
         }catch (Exception e){
             mostrarMsg("Error al mostrar el menu: "+ e.getMessage());
         }
+
+        if (!isAdmin) {
+            menu.findItem(R.id.mnxAgregar).setVisible(false);
+            menu.findItem(R.id.mnxModificar).setVisible(false);
+            menu.findItem(R.id.mnxEliminar).setVisible(false);
+        }
+
+
     }
 
     //Agregar, modificar y eliminar
@@ -318,12 +320,40 @@ public class lista_delivery extends AppCompatActivity {
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         boolean isAdmin = getIntent().getBooleanExtra("is_admin", false);
 
+        try {
         if (!isAdmin) {
             mostrarMsg("No tienes permiso para realizar esta acción.");
             return super.onContextItemSelected(item);
-        }
+        } else if (isAdmin==true) {
 
-        try {
+                switch (item.getItemId()) {
+                    case R.id.mnxAgregar:
+                        parametros.putString("accion", "nuevo");
+                        irAgregar(parametros);
+                        break;
+                    case R.id.mnxModificar:
+                        parametros.putString("accion", "modificar");
+                        parametros.putString("productos", datosJSON.getJSONObject(posicion).toString());
+                        irAgregar(parametros);
+                        break;
+                    case R.id.mnxEliminar:
+                        eliminarProductos();
+                        break;
+                }
+                return true;
+            }
+
+        }
+        catch (Exception e) {
+            mostrarMsg("Error en menu: " + e.getMessage());
+            return super.onContextItemSelected(item);
+        }
+        return super.onContextItemSelected(item);
+    }
+
+
+
+      /*  try {
             switch (item.getItemId()) {
                 case R.id.mnxAgregar:
                     parametros.putString("accion", "nuevo");
@@ -342,8 +372,7 @@ public class lista_delivery extends AppCompatActivity {
         } catch (Exception e) {
             mostrarMsg("Error en menu: " + e.getMessage());
             return super.onContextItemSelected(item);
-        }
-    }
+        }*/
 
 
     //Eliminar productos
