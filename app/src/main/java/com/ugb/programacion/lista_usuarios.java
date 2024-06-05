@@ -63,6 +63,14 @@ public class lista_usuarios extends AppCompatActivity {
         //cambiar color barra estado
         cambiarColorBarraEstado(getResources().getColor(R.color.darkblue));
 
+        String usuarioLogeado = getIntent().getStringExtra("usuario_logeado");
+        boolean isAdmin = getIntent().getBooleanExtra("is_admin", false);
+
+        if (usuarioLogeado != null) {
+            session.createLoginSession(usuarioLogeado, isAdmin);
+            //lblusuariotexto.setText(usuarioLogeado);
+        }
+
 
         ltsUser = findViewById(R.id.ltsAmigos);
 
@@ -187,7 +195,7 @@ public class lista_usuarios extends AppCompatActivity {
                     jsonUserObject.put("_id",cAmigos.getString(0));
                     jsonUserObject.put("_rev",cAmigos.getString(1));
                     jsonUserObject.put("idAmigo",cAmigos.getString(2));
-                    jsonUserObject.put("nombre",cAmigos.getString(3));
+                    jsonUserObject.put("nombreuser",cAmigos.getString(3));
                     jsonUserObject.put("direccion",cAmigos.getString(4));
                     jsonUserObject.put("telefono",cAmigos.getString(5));
                     jsonUserObject.put("email",cAmigos.getString(6));
@@ -197,6 +205,7 @@ public class lista_usuarios extends AppCompatActivity {
                     jsonObjectValue.put("value", jsonUserObject);
                     datosUserJSON.put(jsonObjectValue);
                 }while(cAmigos.moveToNext());
+                mostrarDatosAmigos();
             }else{
                 mostrarMsg("No hay amigos que mostrar");
             }
@@ -216,7 +225,7 @@ public class lista_usuarios extends AppCompatActivity {
                     misDatosJSONObject = datosUserJSON.getJSONObject(i);
                     misAmigos = new amigos(
                             misDatosJSONObject.getString("idAmigo"),
-                            misDatosJSONObject.getString("nombre"),
+                            misDatosJSONObject.getString("nombreuser"),
                             misDatosJSONObject.getString("direccion"),
                             misDatosJSONObject.getString("telefono"),
                             misDatosJSONObject.getString("email"),
@@ -240,6 +249,7 @@ public class lista_usuarios extends AppCompatActivity {
         }
     }
 
+    boolean datosObtenidos = false;
     private void obtenerDatosAmigosServidor(){
         try{
             databaseReference = FirebaseDatabase.getInstance().getReference("amigos");
@@ -262,7 +272,6 @@ public class lista_usuarios extends AppCompatActivity {
                                 mostrarMsg("Error al obtener mis datos: "+ e.getMessage());
                             }
                         }
-
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
                             mostrarMsg("Accion cancelado...");
@@ -274,26 +283,30 @@ public class lista_usuarios extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     try {
-                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                            amigos amigo = dataSnapshot.getValue(amigos.class);
-                            jsonUserObject = new JSONObject();
-                            jsonUserObject.put("idAmigo", amigo.getIdAmigo());
-                            jsonUserObject.put("nombre", amigo.getNombreuser());
-                            jsonUserObject.put("direccion", amigo.getDireccion());
-                            jsonUserObject.put("telefono", amigo.getTelefono());
-                            jsonUserObject.put("email", amigo.getEmail());
-                            jsonUserObject.put("dui", amigo.getDui());
-                            jsonUserObject.put("imgusuario", amigo.getImgusuario());
-                            jsonUserObject.put("imgusuariosFirebaseurl", amigo.getImgusuariosFirebaseurl());
-                            jsonUserObject.put("to", amigo.getToken());
-                            jsonUserObject.put("from", miToken);
-                            datosUserJSON.put(jsonUserObject);
+                        if (!datosObtenidos) {
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                amigos amigo = dataSnapshot.getValue(amigos.class);
+                                jsonUserObject = new JSONObject();
+                                jsonUserObject.put("idAmigo", amigo.getIdAmigo());
+                                jsonUserObject.put("nombreuser", amigo.getNombreuser());
+                                jsonUserObject.put("direccion", amigo.getDireccion());
+                                jsonUserObject.put("telefono", amigo.getTelefono());
+                                jsonUserObject.put("email", amigo.getEmail());
+                                jsonUserObject.put("dui", amigo.getDui());
+                                jsonUserObject.put("imgusuario", amigo.getImgusuario());
+                                jsonUserObject.put("getimgusuariosFirebaseurl", amigo.getImgusuariosFirebaseurl());
+                                jsonUserObject.put("to", amigo.getToken());
+                                jsonUserObject.put("from", miToken);
+                                datosUserJSON.put(jsonUserObject);
+                            }
+                            datosObtenidos = true;
+                            mostrarDatosAmigos();
                         }
-                        mostrarDatosAmigos();
-                    }catch (Exception e){
-                        mostrarMsg("Error al obtener datos de usuarios: "+ e.getMessage());
+                    } catch (Exception e) {
+                        mostrarMsg("Error al obtener datos de amigos: " + e.getMessage());
                     }
                 }
+
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
 
@@ -306,14 +319,15 @@ public class lista_usuarios extends AppCompatActivity {
     private void mostrarChats(){
         ltsUser.setOnItemClickListener((parent, view, position, id) -> {
             try{
+                JSONObject amigoObject = datosUserJSON.getJSONObject(position).getJSONObject("value");
                 Bundle bundle = new Bundle();
-                bundle.putString("nombreuser", datosUserJSON.getJSONObject(position).getString("nombreuser") );
-                bundle.putString("to", datosUserJSON.getJSONObject(position).getString("to") );
-                bundle.putString("from", datosUserJSON.getJSONObject(position).getString("from") );
-                bundle.putString("imgusuario", datosUserJSON.getJSONObject(position).getString("imgusuario") );
-                bundle.putString("imgusuariosFirebaseurl", datosUserJSON.getJSONObject(position).getString("imgusuariosFirebaseurl") );
+                bundle.putString("nombreuser", amigoObject.getString("nombreuser"));
+                bundle.putString("to", amigoObject.getString("to"));
+                bundle.putString("from", amigoObject.getString("from"));
+                bundle.putString("imgusuario", amigoObject.getString("imgusuario"));
+                bundle.putString("imgusuariosFirebaseurl", amigoObject.getString("imgusuariosFirebaseurl"));
 
-                Intent intent = new Intent(getApplicationContext(), Usuarios.class);
+                Intent intent = new Intent(getApplicationContext(), Mensajeria.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }catch (Exception ex){
@@ -321,6 +335,7 @@ public class lista_usuarios extends AppCompatActivity {
             }
         });
     }
+
 
 
     private void buscarAmigos() {
@@ -393,6 +408,5 @@ public class lista_usuarios extends AppCompatActivity {
             window.setStatusBarColor(color);
         }
     } //fin cambiar colorbarraestado
-
 
 }

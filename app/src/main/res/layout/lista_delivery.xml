@@ -82,7 +82,7 @@
             app:layout_constraintStart_toEndOf="@+id/lblnameapp"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/btnUser"
             android:layout_width="36dp"
             android:layout_height="36dp"
@@ -101,17 +101,16 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/groupcategoria"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="150dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardImage"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="130dp"
                 android:layout_marginStart="6dp"
                 android:layout_marginTop="6dp"
                 android:layout_marginEnd="6dp"

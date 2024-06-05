@@ -41,6 +41,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 //Agregar usuarios o amigos
 public class Usuarios extends AppCompatActivity {
+    seccionUsuario session;
     Button btnGuardarAmigos;
     CircleImageView cirimgAmigo;
     ImageView imgAtrasListaUsuario;
@@ -59,6 +60,17 @@ public class Usuarios extends AppCompatActivity {
 
         //cambiar color barra estado
         cambiarColorBarraEstado(getResources().getColor(R.color.darkblue));
+
+        // Inicializar seccion usuario
+        seccionUsuario seccionUsuario = new seccionUsuario(getApplicationContext());
+
+        String usuarioLogeado = getIntent().getStringExtra("usuario_logeado");
+        boolean isAdmin = getIntent().getBooleanExtra("is_admin", false);
+
+        if (usuarioLogeado != null) {
+            session.createLoginSession(usuarioLogeado, isAdmin);
+            //lblusuariotexto.setText(usuarioLogeado);
+        }
 
         obtenerToken();
         di = new detectarInternet(getApplicationContext());
@@ -144,7 +156,7 @@ public class Usuarios extends AppCompatActivity {
                 idAmigo = jsonUserObject.getString("idAmigo");
 
                 tempVal = findViewById(R.id.txtnombreuser);
-                tempVal.setText(jsonUserObject.getString("nombre"));
+                tempVal.setText(jsonUserObject.getString("nombreuser"));
 
                 tempVal = findViewById(R.id.txtdireccion);
                 tempVal.setText(jsonUserObject.getString("direccion"));

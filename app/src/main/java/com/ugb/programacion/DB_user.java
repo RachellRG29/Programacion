@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 public class DB_user extends SQLiteOpenHelper {
     private  static  final String dbname = "db_user";
     private  static final int v=1;
-    private static  final String SQldb = "CREATE TABLE amigos(id text, rev text, idAmigo text, nombreuser text, direccion text, telefono text, email text, dui text, imgusuario text, imgusuariosFirebaseurl text, token text)";
+    private static  final String SQldb = "CREATE TABLE amigos(id text, rev text, idAmigo text, nombreuser text, direccion text, telefono text, email text, dui text, imgusuario text, actualizado text)";
 
     public DB_user(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, dbname, factory, v);
@@ -37,7 +37,7 @@ public class DB_user extends SQLiteOpenHelper {
                 db.execSQL("UPDATE amigos SET id='"+ datos[0] +"',rev='"+ datos[1] +"',nombreuser='"+ datos[3] +"',direccion='"+ datos[4] +"',telefono='"+ datos[5] +"',email='"+ datos[6] +
                         "',dui='"+ datos[7] +"',imgusuario='"+ datos[8] +"',actualizado='"+ datos[9] +   "' WHERE idAmigo='"+ datos[2] +"'");
             } else if (accion.equals("eliminar")) {
-                db.execSQL("DELETE FROM amigos WHERE idProducto='"+ datos[2] +"'");
+                db.execSQL("DELETE FROM amigos WHERE idAmigo='"+ datos[2] +"'");
             }
             return "ok";
         } catch (Exception e){

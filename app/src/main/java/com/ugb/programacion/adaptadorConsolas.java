@@ -1,5 +1,7 @@
 package com.ugb.programacion;
 
+import static android.content.Intent.getIntent;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -44,6 +46,10 @@ public class adaptadorConsolas extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
+        // Inicializar seccion usuario
+        seccionUsuario seccionUsuario = new seccionUsuario(context.getApplicationContext());
+
         View itemView = convertView;
         if (itemView == null) {
             itemView = layoutInflater.inflate(R.layout.listview_consolas, parent, false);
@@ -104,6 +110,7 @@ public class adaptadorConsolas extends BaseAdapter {
 
         return itemView;
     }
+
 
     // Función para calcular el precio
     private double calcularPrecio(double costo, double ganancia) {
