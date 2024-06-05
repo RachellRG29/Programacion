@@ -144,7 +144,7 @@ public class Usuarios extends AppCompatActivity {
                 idAmigo = jsonUserObject.getString("idAmigo");
 
                 tempVal = findViewById(R.id.txtnombreuser);
-                tempVal.setText(jsonUserObject.getString("nombre"));
+                tempVal.setText(jsonUserObject.getString("nombreuser"));
 
                 tempVal = findViewById(R.id.txtdireccion);
                 tempVal.setText(jsonUserObject.getString("direccion"));

@@ -187,7 +187,7 @@ public class lista_usuarios extends AppCompatActivity {
                     jsonUserObject.put("_id",cAmigos.getString(0));
                     jsonUserObject.put("_rev",cAmigos.getString(1));
                     jsonUserObject.put("idAmigo",cAmigos.getString(2));
-                    jsonUserObject.put("nombre",cAmigos.getString(3));
+                    jsonUserObject.put("nombreuser",cAmigos.getString(3));
                     jsonUserObject.put("direccion",cAmigos.getString(4));
                     jsonUserObject.put("telefono",cAmigos.getString(5));
                     jsonUserObject.put("email",cAmigos.getString(6));
@@ -216,7 +216,7 @@ public class lista_usuarios extends AppCompatActivity {
                     misDatosJSONObject = datosUserJSON.getJSONObject(i);
                     misAmigos = new amigos(
                             misDatosJSONObject.getString("idAmigo"),
-                            misDatosJSONObject.getString("nombre"),
+                            misDatosJSONObject.getString("nombreuser"),
                             misDatosJSONObject.getString("direccion"),
                             misDatosJSONObject.getString("telefono"),
                             misDatosJSONObject.getString("email"),
@@ -278,7 +278,7 @@ public class lista_usuarios extends AppCompatActivity {
                             amigos amigo = dataSnapshot.getValue(amigos.class);
                             jsonUserObject = new JSONObject();
                             jsonUserObject.put("idAmigo", amigo.getIdAmigo());
-                            jsonUserObject.put("nombre", amigo.getNombreuser());
+                            jsonUserObject.put("nombreuser", amigo.getNombreuser());
                             jsonUserObject.put("direccion", amigo.getDireccion());
                             jsonUserObject.put("telefono", amigo.getTelefono());
                             jsonUserObject.put("email", amigo.getEmail());
@@ -313,7 +313,7 @@ public class lista_usuarios extends AppCompatActivity {
                 bundle.putString("imgusuario", datosUserJSON.getJSONObject(position).getString("imgusuario") );
                 bundle.putString("imgusuariosFirebaseurl", datosUserJSON.getJSONObject(position).getString("imgusuariosFirebaseurl") );
 
-                Intent intent = new Intent(getApplicationContext(), Usuarios.class);
+                Intent intent = new Intent(getApplicationContext(), Mensajeria.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }catch (Exception ex){

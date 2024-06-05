@@ -12,8 +12,6 @@ public class DB extends SQLiteOpenHelper {
     private  static final int v=1;
     private static  final String SQldb = "CREATE TABLE productos(id text, rev text, idProducto text, codigo text, nombre text, marca text, costo text, stock text, ganancia text, descripcion text, imgproducto text, actualizado text)";
 
-   // private static  final String SQldb = "CREATE TABLE productos(id text, rev text, idProducto text, codigo text, nombre text, marca text, costo text, stock text, ganancia text, descripcion text, imgproducto text, actualizado text)";
-
     public DB(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, dbname, factory, v);
     }
