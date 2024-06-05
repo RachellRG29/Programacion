@@ -9,10 +9,10 @@ public class utilidades {
     static String user = "admin";
     static String passwd = "2013";*/
 
-   static String urlConsulta = "http://192.168.1.2:5984/yaritza/_design/cindy/_view/cindy";
-    static String urlMto = "http://192.168.1.2:5984/yaritza";
-    static String user = "Cindy";
-    static String passwd = "couch129.29";
+   static String urlConsulta = "http://192.168.45.177:5984/gilberto/_design/nahun/_view/nahun";
+    static String urlMto = "http://192.168.45.177:5984/nahun";
+    static String user = "admin";
+    static String passwd = "Naquiel7472";
     static String credencialesCodificadas = Base64.getEncoder().encodeToString((user +":"+ passwd).getBytes());
     public String generarIdUnico(){
         return java.util.UUID.randomUUID().toString();

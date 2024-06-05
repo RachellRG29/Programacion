@@ -35,9 +35,17 @@
         android:theme="@style/Theme.Programacion"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDVoQvXu4hy4Upwvn2VevatQGHvTWn6PWI" />
+
         <activity
-            android:name=".adaptadorConsoleXpress"
+            android:name=".MapsAcivity"
             android:exported="false" />
+
+
+
         <activity
             android:name=".lista_usuarios"
             android:exported="false" />

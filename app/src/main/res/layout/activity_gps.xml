@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp"
     tools:context=".Gps">
 
-    <!-- GPS ConsoleXpress toolbar-->
+    <Button
+        android:id="@+id/btnMostrarMapa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mostrar Mapa"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
 
+
+    <!-- GPS ConsoleXpress toolbar-->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -16,13 +27,17 @@
         android:background="@color/darkblue"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        android:layout_alignParentTop="true" />
 
+    <!-- Organizar el gps-->
+    <RelativeLayout
+        android:id="@+id/gpsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:layout_above="@+id/bottomNavegation">
+
+        <!-- Mensajes de ubicación -->
         <TextView
             android:id="@+id/lblubicacion"
             android:layout_width="180dp"
@@ -32,20 +47,35 @@
             android:text="--- Ubicación ---"
             android:textColor="@color/white"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true" />
 
-    </androidx.appcompat.widget.Toolbar>
+        <TextView
+            android:id="@+id/mensaje_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:layout_below="@id/lblubicacion"
+            android:layout_marginTop="15dp" />
 
-    <!-- Organizar el gps-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/mensaje_id2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:layout_below="@id/mensaje_id"
+            android:layout_marginTop="15dp" />
 
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- Imagen -->
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:layout_below="@id/mensaje_id2"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
 
     <!-- Boton de navegacion-->
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -57,10 +87,7 @@
         app:itemIconTint="@drawable/item_selector"
         app:itemRippleColor="@android:color/transparent"
         app:labelVisibilityMode="unlabeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="1.0"
+        android:layout_alignParentBottom="true"
         app:menu="@menu/navegation" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
