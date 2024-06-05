@@ -13,6 +13,7 @@ import android.location.LocationProvider;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -24,27 +25,52 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-public class Gps extends AppCompatActivity {
+
+public class Gps extends AppCompatActivity implements OnMapReadyCallback {
     BottomNavigationView bottomNavigationView;
     TextView mensaje1;
     TextView mensaje2;
-    Button btnMostrarMapa;
+
+    private GoogleMap mMap;
+    private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
+    private boolean locationPermissionGranted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gps);
 
+        cambiarColorBarraEstado(getResources().getColor(R.color.darkblue));
+
         mensaje1 = findViewById(R.id.mensaje_id);
         mensaje2 = findViewById(R.id.mensaje_id2);
-        btnMostrarMapa = findViewById(R.id.btnMostrarMapa);
+        //btnMostrarMapa = findViewById(R.id.btnMostrarMapa);
+
+        // Request location permission
+        getLocationPermission();
+
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        if (mapFragment != null) {
+            mapFragment.getMapAsync((OnMapReadyCallback) this);
+        } else {
+            Log.e("Gps", "Error: Map Fragment is null");
+        }
 
         bottomNavigationView = findViewById(R.id.bottomNavegation);
         bottomNavigationView.setSelectedItemId(R.id.navGps);
@@ -70,7 +96,7 @@ public class Gps extends AppCompatActivity {
             }
         });
 
-        cambiarColorBarraEstado(getResources().getColor(R.color.darkblue));
+
 
         if (ActivityCompat.checkSelfPermission(Gps.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(Gps.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1000);
@@ -78,13 +104,88 @@ public class Gps extends AppCompatActivity {
             locationStart();
         }
 
-        btnMostrarMapa.setOnClickListener(new View.OnClickListener() {
+       /* btnMostrarMapa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Gps.this, MapsAcivity.class);
                 startActivity(intent);
             }
         });
+
+             <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView1"
+            android:layout_alignParentBottom="true"
+         />
+
+        */
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        // Add a marker in a specific location and move the camera
+        LatLng sydney = new LatLng(-34, 151);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+        updateLocationUI();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String[] permissions,
+                                           int[] grantResults) {
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 1000) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                locationStart();
+            } else {
+                mensaje1.setText("Permiso denegado");
+            }
+        }
+        locationPermissionGranted = false;
+        if (requestCode == PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION) {
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                locationPermissionGranted = true;
+            }
+        }
+        updateLocationUI();
+    }
+
+    private void updateLocationUI() {
+        if (mMap == null) {
+            return;
+        }
+        try {
+            if (locationPermissionGranted) {
+                mMap.setMyLocationEnabled(true);
+                mMap.getUiSettings().setMyLocationButtonEnabled(true);
+            } else {
+                mMap.setMyLocationEnabled(false);
+                mMap.getUiSettings().setMyLocationButtonEnabled(false);
+            }
+        } catch (SecurityException e) {
+            Log.e("Exception: %s", e.getMessage());
+        }
+    }
+
+    private void getLocationPermission() {
+        if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            locationPermissionGranted = true;
+        } else {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+        }
     }
 
     private void locationStart() {
@@ -109,7 +210,7 @@ public class Gps extends AppCompatActivity {
         }
     }
 
-    @Override
+   /* @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 1000) {
@@ -119,7 +220,7 @@ public class Gps extends AppCompatActivity {
                 mensaje1.setText("Permiso denegado");
             }
         }
-    }
+    }*/
 
     public void setLocation(Location loc) {
         if (loc.getLatitude() != 0.0 && loc.getLongitude() != 0.0) {

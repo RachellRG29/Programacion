@@ -13,7 +13,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-
+/*
 public class MapsAcivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -23,7 +23,7 @@ public class MapsAcivity extends FragmentActivity implements OnMapReadyCallback 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_maps_acivity);
 
         // Request location permission
         getLocationPermission();
@@ -50,7 +50,7 @@ public class MapsAcivity extends FragmentActivity implements OnMapReadyCallback 
         }
     }
 
-    @Override
+   /* @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String[] permissions,
                                            int[] grantResults) {
@@ -62,7 +62,9 @@ public class MapsAcivity extends FragmentActivity implements OnMapReadyCallback 
             }
         }
         updateLocationUI();
-    }
+    }*/
+
+/*
 
     private void updateLocationUI() {
         if (mMap == null) {
@@ -81,7 +83,7 @@ public class MapsAcivity extends FragmentActivity implements OnMapReadyCallback 
         }
     }
 
-    @Override
+    /*@Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
@@ -92,5 +94,5 @@ public class MapsAcivity extends FragmentActivity implements OnMapReadyCallback 
 
         updateLocationUI();
     }
-}
+}*/
 ///gps
